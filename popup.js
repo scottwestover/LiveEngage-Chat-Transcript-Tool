@@ -249,6 +249,15 @@ function splitDate(date) {
     return combinedDate;
 }
 
+function splitDate2(date) {
+    date = date.split("T");
+    var subDate = date[1].split("+");
+    subDate = subDate[0];
+    date = date[0];
+    var combinedDate = "<b>Date: </b>" + date + " <b>Time: </b>" + subDate + " (UTC)";
+    return combinedDate;
+}
+
 function getDuration(x) {
     var msec = x;
     var hh = Math.floor(msec / 1000 / 60 / 60);
@@ -372,7 +381,8 @@ function myProcess(i, zb, x) {
                 txt = "Visitor";
             }
             title = y[j].getElementsByTagName("Text")[0].childNodes[0].nodeValue;
-            d16 += y[j].getAttribute("time") + "<br />";
+            tempTime = y[j].getAttribute("time");
+            d16 += splitDate2(startTime) + "<br />";
             if (y[j].attributes[0].nodeValue == "info") {
                 d16 += "<font color='green'>" + txt + ': ' + title + "</font><br /><br />";
             } else if (y[j].attributes[1].nodeName == "repId") {
@@ -384,7 +394,9 @@ function myProcess(i, zb, x) {
             //who talked
             txt = y[j].attributes[0].nodeValue;
             title = y[j].getElementsByTagName("HTML")[0].childNodes[0].nodeValue;
-            title = title.replace(/(<p[^>]*>|<\/p>)/g, "");;
+            title = title.replace(/(<p[^>]*>|<\/p>)/g, "");
+            tempTime = y[j].getAttribute("time");
+            d16 += splitDate2(startTime) + "<br />";
             if (y[j].attributes[0].nodeValue == "info") {
                 d16 += "<font color='green'>" + txt + ': ' + title + "</font><br /><br />";
             } else if (y[j].attributes[1].nodeName == "repId") {
