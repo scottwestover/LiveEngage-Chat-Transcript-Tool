@@ -1,6 +1,8 @@
 # LiveEngage-Chat-Transcript-Tool
 XML Parser tool that can be used to read in the chat transcripts from LiveEngage. The tool can be installed as a Chrome Extension, or ran locally.
 
+You can view a live example of the tool here: http://scottwestover.github.io/
+
 ##Instructions For Using The XML Chat Transcript Widget
 
 Note - This tool is still under development. As you are using the tool if anything unexpected happens, please fill out the feedback form that is linked on the popup page. This will help me fix any bugs or unexpected issues that occur and make this tool better.
