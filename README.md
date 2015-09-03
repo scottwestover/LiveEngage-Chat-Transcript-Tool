@@ -18,3 +18,7 @@ Note - This tool is still under development. As you are using the tool if anythi
 2. Open your browser and navigate to your extensions by going to "chrome://extensions/" in your navbar, or by clicking on "Extensions" tab in the menu by clicking on "Menu -> More Tools -> Extensions".
 3. You must enable the developer mode to install the extension. 
 4. Click on "Load unpacked extension...", and choose the "LiveEngage Chat Transcript Tool" folder you unzipped earlier.
+
+##Updates
+Master - Added in ability to search each survey
+Version 1.0 - Initial Release
