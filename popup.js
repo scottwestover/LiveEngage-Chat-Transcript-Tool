@@ -111,6 +111,7 @@ $(document).ready(function () {
     });
 
     var table = $('#example').DataTable({
+        "deferRender": true,
         "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
         "columnDefs": [{
                 "targets": 0,
@@ -134,8 +135,11 @@ $(document).ready(function () {
 
     // Setup - add a text input to each footer cell
     $('.srcT').each(function () {
-        var title = $('#example thead th').eq($(this).index()).text();
         $(this).html('<input type="text" placeholder="Search" size="4"/>');
+    });
+
+    $('input.column_filter').on('keyup click', function () {
+        filterColumn($(this).attr('data-column'));
     });
 
     // Apply the search
@@ -171,6 +175,17 @@ $(document).ready(function () {
             myData = table.row(myData.row).data();
             changeModal(myData);
         }
+    });
+
+    //visibility buttons
+    $('a.toggle-vis').on('click', function (e) {
+        e.preventDefault();
+
+        // Get the column API object
+        var column = table.column($(this).attr('data-column'));
+
+        // Toggle the visibility
+        column.visible(!column.visible());
     });
 });
 /* Formatting function for row details - modify as you need */
@@ -598,6 +613,52 @@ function changeModal(d) {
             '</tr>' +
             '</table><br />';
     }
+    //General chat info
+    document.getElementById("otherTables").innerHTML += '<table class="tableModal" cellpadding="5" cellspacing="0" border="1" style="padding-left:50px;">' +
+        '<tr>' +
+        '<th colspan="2" style="text-align: center"><b>General Chat Info</b></th>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Browser:</td>' +
+        '<td>' + d[7] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Host IP:</td>' +
+        '<td>' + d[8] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Country:</td>' +
+        '<td>' + d[10] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>City:</td>' +
+        '<td>' + d[11] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Organization:</td>' +
+        '<td>' + d[12] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>World Region:</td>' +
+        '<td>' + d[13] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Postal Code:</td>' +
+        '<td>' + d[14] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Time Zone:</td>' +
+        '<td>' + d[15] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>ISP:</td>' +
+        '<td>' + d[16] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Chat Referer:</td>' +
+        '<td>' + d[26] + '</td>' +
+        '</tr>' +
+        '</table>';
 }
 
 function strip(html) {
@@ -608,4 +669,10 @@ function strip(html) {
 
 function getOrderID() {
     myOrderID = document.getElementById("orderIDVar").value;
+}
+
+function filterColumn(i) {
+    $('#example').DataTable().column(i).search(
+        $('#col' + i + '_filter').val()
+    ).draw();
 }

@@ -49,9 +49,37 @@
                             </div>
                         </div>
                     </fieldset>
-                    Please provide any feedback or technical issues here: <a href="https://docs.google.com/forms/d/1JmE1JL_YUPG4eFp3PNLkXlYOOvr3kYfNmZK941fcIGg/viewform">Feedback Form</a>
                     <!--<br />How to use the XML tool: <a href="instructions.html">Click Here</a>-->
                 </form>
+            </div>
+            <div>
+                <b>Toggle Main Columns: </b><a class="toggle-vis" data-column="2">Chat Start Time</a> - <a class="toggle-vis" data-column="3">Chat End Time</a> - <a class="toggle-vis" data-column="4">Duration</a> - <a class="toggle-vis" data-column="5">Skill Group</a> - <a class="toggle-vis" data-column="6">Operator</a> - <a class="toggle-vis" data-column="9">Real Time Session ID</a> - <a class="toggle-vis" data-column="21">Pre Chat</a> - <a class="toggle-vis" data-column="22">Post Chat</a> - <a class="toggle-vis" data-column="23">Offline</a> - <a class="toggle-vis" data-column="25">Operator</a>
+            </div>
+            <br />
+            <!-- Search Survey -->
+            <div id="surveySearch" class="panel panel-default">
+                <div class="panel-body">
+                    <table>
+                        <tr>
+                            <td>
+                                <label for="col18_filter"> <strong>Search Prechat Survey:</strong></label>
+                                <input type="text" class="column_filter" id="col18_filter" data-column="18" placeholder="Search Prechat Survey">&#160;
+                            </td>
+                            <td>
+                                <label for="col19_filter"> <strong> Search Postchat Survey:</strong></label>
+                                <input type="text" class="column_filter" id="col19_filter" data-column="19" placeholder="Search Postchat Survey">&#160;
+                            </td>
+                            <td>
+                                <label for="col20_filter"> <strong> Search Offline Survey:</strong></label>
+                                <input type="text" class="column_filter" id="col20_filter" data-column="20" placeholder="Search Offline Survey">&#160;
+                            </td>
+                            <td>
+                                <label for="col24_filter"> <strong> Search Agent Survey:</strong></label>
+                                <input type="text" class="column_filter" id="col24_filter" data-column="24" placeholder="Search Agent Survey">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
             <div id="results">
                 <table id='example' class='display dataTable cell-border' cellspacing='0' width='100%'>
@@ -78,8 +106,8 @@
                             <th>Prechat Survey</th>
                             <th>Post Chat</th>
                             <th>Offline Survey</th>
-                            <th>Prechat</th>
-                            <th>Postchat</th>
+                            <th>Pre Chat</th>
+                            <th>Post Chat</th>
                             <th>Offline</th>
                             <th>Operator Survey</th>
                             <th>Operator</th>
@@ -121,11 +149,12 @@
                     </tbody>
                 </table>
             </div>
-
             <!-- For the total -->
             <div id="total"></div>
             <!-- For any error with total-->
             <div id="error"></div>
+            <div>
+                Please provide any feedback or technical issues here: <a href="https://docs.google.com/forms/d/1JmE1JL_YUPG4eFp3PNLkXlYOOvr3kYfNmZK941fcIGg/viewform">Feedback Form</a></div>
 
             <!-- Modal -->
             <div class="modal fade" id="myModal" role="dialog">
@@ -154,7 +183,6 @@
                                     <td class="padd">
                                         <div id="sk">
                                     </td>
-                                    </div>
                                     <td class="padd">
                                         <div id="ag"></div>
                                     </td>
@@ -165,16 +193,16 @@
                             </table>
                             <br />
                             <div id="otherTables"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button id='pntbtn' class='btn btn-default'>Print</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <button id='pntbtn' class='btn btn-default'>Print</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
-        </div>
     </body>
 
 </html>
