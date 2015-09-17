@@ -320,7 +320,7 @@ function myProcess(i, zb, x) {
     if (chatObj == undefined) {
         d5 = "";
     } else {
-        d5 = x[i].getElementsByTagName("Rep")[0].attributes[3].nodeValue;
+        d5 = x[i].getElementsByTagName("Rep")[0].attributes.getNamedItem("repName").nodeValue;
     }
     chatObj = x[i].getElementsByTagName("agent")[0];
     if (chatObj == undefined) {
