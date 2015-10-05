@@ -102,16 +102,7 @@ function searchXML(xmlDoc) {
 }
 
 $(document).ready(function () {
-    $("#xmlFileinput").change(function () {
-        handleFiles(this.files);
-    });
-
-    $("#pntbtn").click(function () {
-        printME();
-    });
-
     var table = $('#example').DataTable({
-        "deferRender": true,
         "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
         "columnDefs": [{
                 "targets": 0,
@@ -123,7 +114,7 @@ $(document).ready(function () {
                 "targets": 1,
                 "data": null,
                 "orderable": false,
-                "defaultContent": '<button type="button" id="pntbtn1" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Print</button>'
+                "defaultContent": '<button type="button" onclick="myFunction()" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Print</button>'
         }
                        ,
             {
@@ -135,11 +126,8 @@ $(document).ready(function () {
 
     // Setup - add a text input to each footer cell
     $('.srcT').each(function () {
+        var title = $('#example thead th').eq($(this).index()).text();
         $(this).html('<input type="text" placeholder="Search" size="4"/>');
-    });
-
-    $('input.column_filter').on('keyup click', function () {
-        filterColumn($(this).attr('data-column'));
     });
 
     // Apply the search
@@ -166,26 +154,6 @@ $(document).ready(function () {
             row.child(format(row.data())).show();
             tr.addClass('shown');
         }
-    });
-    $('#example tbody').on('click', 'td', function () {
-        var td = table.cell(this).data();
-        if (td === '<button type="button" id="pntbtn1" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Print</button>') {
-            var myData = "";
-            myData = table.cell(this).index();
-            myData = table.row(myData.row).data();
-            changeModal(myData);
-        }
-    });
-
-    //visibility buttons
-    $('a.toggle-vis').on('click', function (e) {
-        e.preventDefault();
-
-        // Get the column API object
-        var column = table.column($(this).attr('data-column'));
-
-        // Toggle the visibility
-        column.visible(!column.visible());
     });
 });
 /* Formatting function for row details - modify as you need */
@@ -264,15 +232,6 @@ function splitDate(date) {
     return combinedDate;
 }
 
-function splitDate2(date) {
-    date = date.split("T");
-    var subDate = date[1].split("+");
-    subDate = subDate[0];
-    date = date[0];
-    var combinedDate = "<b>Date: </b>" + date + " <b>Time: </b>" + subDate + " (UTC)";
-    return combinedDate;
-}
-
 function getDuration(x) {
     var msec = x;
     var hh = Math.floor(msec / 1000 / 60 / 60);
@@ -320,7 +279,7 @@ function myProcess(i, zb, x) {
     if (chatObj == undefined) {
         d5 = "";
     } else {
-        d5 = x[i].getElementsByTagName("Rep")[0].attributes.getNamedItem("repName").nodeValue;
+        d5 = x[i].getElementsByTagName("Rep")[0].attributes[3].nodeValue;
     }
     chatObj = x[i].getElementsByTagName("agent")[0];
     if (chatObj == undefined) {
@@ -396,8 +355,7 @@ function myProcess(i, zb, x) {
                 txt = "Visitor";
             }
             title = y[j].getElementsByTagName("Text")[0].childNodes[0].nodeValue;
-            tempTime = y[j].getAttribute("time");
-            d16 += splitDate2(startTime) + "<br />";
+            d16 += y[j].getAttribute("time") + "<br />";
             if (y[j].attributes[0].nodeValue == "info") {
                 d16 += "<font color='green'>" + txt + ': ' + title + "</font><br /><br />";
             } else if (y[j].attributes[1].nodeName == "repId") {
@@ -409,9 +367,7 @@ function myProcess(i, zb, x) {
             //who talked
             txt = y[j].attributes[0].nodeValue;
             title = y[j].getElementsByTagName("HTML")[0].childNodes[0].nodeValue;
-            title = title.replace(/(<p[^>]*>|<\/p>)/g, "");
-            tempTime = y[j].getAttribute("time");
-            d16 += splitDate2(startTime) + "<br />";
+            title = title.replace(/(<p[^>]*>|<\/p>)/g, "");;
             if (y[j].attributes[0].nodeValue == "info") {
                 d16 += "<font color='green'>" + txt + ': ' + title + "</font><br /><br />";
             } else if (y[j].attributes[1].nodeName == "repId") {
@@ -538,6 +494,15 @@ function myProcess(i, zb, x) {
                   ]);
 }
 
+function myFunction() {
+    var table = $('#example').DataTable();
+    var myData = "";
+    $('#example tbody').on('click', 'tr', function () {
+        myData = table.row(this).data();
+        changeModal(myData);
+    });
+}
+
 function printME() {
     var DocumentContainer = document.getElementById('divtoprint');
     var WindowObject = window.open("", "PrintWindow",
@@ -613,52 +578,6 @@ function changeModal(d) {
             '</tr>' +
             '</table><br />';
     }
-    //General chat info
-    document.getElementById("otherTables").innerHTML += '<table class="tableModal" cellpadding="5" cellspacing="0" border="1" style="padding-left:50px;">' +
-        '<tr>' +
-        '<th colspan="2" style="text-align: center"><b>General Chat Info</b></th>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Browser:</td>' +
-        '<td>' + d[7] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Host IP:</td>' +
-        '<td>' + d[8] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Country:</td>' +
-        '<td>' + d[10] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>City:</td>' +
-        '<td>' + d[11] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Organization:</td>' +
-        '<td>' + d[12] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>World Region:</td>' +
-        '<td>' + d[13] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Postal Code:</td>' +
-        '<td>' + d[14] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Time Zone:</td>' +
-        '<td>' + d[15] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>ISP:</td>' +
-        '<td>' + d[16] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Chat Referer:</td>' +
-        '<td>' + d[26] + '</td>' +
-        '</tr>' +
-        '</table>';
 }
 
 function strip(html) {
@@ -669,10 +588,4 @@ function strip(html) {
 
 function getOrderID() {
     myOrderID = document.getElementById("orderIDVar").value;
-}
-
-function filterColumn(i) {
-    $('#example').DataTable().column(i).search(
-        $('#col' + i + '_filter').val()
-    ).draw();
 }

@@ -22,7 +22,6 @@ Note - This tool is still under development. As you are using the tool if anythi
 4. Click on "Load unpacked extension...", and choose the "LiveEngage Chat Transcript Tool" folder you unzipped earlier.
 
 ##Updates
-Master - Fixed issue where repName was not loading properly
+Master - Added in ability to search each survey
 
 Version 1.0 - Initial Release
-Version 1.1 - Added in ability to search each survey
