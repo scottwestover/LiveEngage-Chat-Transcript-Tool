@@ -3,6 +3,33 @@ var divText = "";
 var divText2 = ""; //added to track error in sales totals
 var loadingPannel;
 var myOrderID = "";
+//visitor response time
+var myLineChart;
+//csat totals
+var myLineChart2;
+//csat avg
+var myLineChart3;
+//holder for visitor response
+var temObj = [];
+var temObjT = [];
+//var holder for csat scores
+var temObj2 = [];
+//var holder for agent response
+var temObj3 = [];
+var temObj3T = [];
+//var for average response time
+var avgT = 0;
+//var for average csat score
+var avgT2 = 0;
+//var for average visitor response time
+var avgT3 = 0;
+var csat = [];
+
+//revenue by agent code
+var agents = [];
+//list of agents used for average response time
+var agentList = [];
+
 loadingPannel = loadingPannel || (function () {
     var lpDialog = $("" +
         "<div class='modal' id='lpDialog' data-backdrop='static' data-keyboard='false'>" +
@@ -99,9 +126,16 @@ function searchXML(xmlDoc) {
     document.getElementById("error").innerHTML = "Order Total Errors: " + divText2;
     loadingPannel.hide();
     $('#example').DataTable().draw();
+    $('#t2').show();
+    $('#t3').show();
+    $('#t4').show();
+    revenueTable();
 }
 
 $(document).ready(function () {
+    $('#t2').hide();
+    $('#t3').hide();
+    $('#t4').hide();
     $("#xmlFileinput").change(function () {
         handleFiles(this.files);
     });
@@ -186,6 +220,187 @@ $(document).ready(function () {
 
         // Toggle the visibility
         column.visible(!column.visible());
+    });
+
+    $('a[href=#chart2]').on('shown.bs.tab', function () {
+        //chart for pie chart
+        var pieData = [{
+            value: 300,
+            color: "#F7464A",
+            highlight: "#FF5A5E",
+            label: "Red"
+                }];
+        var ctx4 = document.getElementById("invest-chart4").getContext("2d");
+        var csatPie = new Chart(ctx4).Pie(pieData, {
+            responsive: true
+        });
+
+        //chart data for CSAT
+        var data = {
+            labels: [],
+            datasets: [{
+                label: "My First dataset",
+                fillColor: "rgba(151,187,205,0.5)",
+                strokeColor: "rgba(151,187,205,0.8)",
+                highlightFill: "rgba(151,187,205,0.75)",
+                highlightStroke: "rgba(151,187,205,1)",
+                data: []
+                    }]
+        };
+        var ctx3 = $("#invest-chart3").get(0).getContext("2d");
+        var invest_chart3 = new Chart(ctx3).Bar(data, {
+            responsive: true
+        });
+        csat.sort();
+        for (k = 0; k < csat.length; k++) {
+            invest_chart3.addData([csat[k].total], csat[k].name);
+            var myTotal = parseInt(csat[k].total);
+            switch (k) {
+                case 0:
+                    csatPie.addData({
+                        value: csat[k].total,
+                        color: "#B48EAD",
+                        highlight: "#C69CBE",
+                        label: csat[k].name
+                    });
+                    break;
+                case 1:
+                    csatPie.addData({
+                        value: csat[k].total,
+                        color: "#F7464A",
+                        highlight: "#FF5A5E",
+                        label: csat[k].name
+                    });
+                    break;
+                case 2:
+                    csatPie.addData({
+                        value: csat[k].total,
+                        color: "#46BFBD",
+                        highlight: "#5AD3D1",
+                        label: csat[k].name
+                    });
+                    break;
+                case 3:
+                    csatPie.addData({
+                        value: csat[k].total,
+                        color: "#FDB45C",
+                        highlight: "#FFC870",
+                        label: csat[k].name
+                    });
+                    break;
+                case 4:
+                    csatPie.addData({
+                        value: csat[k].total,
+                        color: "#949FB1",
+                        highlight: "#A8B3C5",
+                        label: csat[k].name
+                    });
+                    break;
+            }
+        }
+        csatPie.removeData(0);
+    });
+
+    $('a[href=#chart]').on('shown.bs.tab', function () {
+        //chart data for visitor
+        var minResp = [];
+        var data = {
+            labels: [],
+            datasets: [{
+                label: "My First dataset",
+                fillColor: "rgba(151,187,205,0.5)",
+                strokeColor: "rgba(151,187,205,0.8)",
+                highlightFill: "rgba(151,187,205,0.75)",
+                highlightStroke: "rgba(151,187,205,1)",
+                data: []
+                    }]
+        };
+        var ctx1 = $("#invest-chart").get(0).getContext("2d");
+        var invest_chart = new Chart(ctx1).Bar(data, {
+            responsive: true
+        });
+
+        //chart data for agent
+        var data2 = {
+            labels: [],
+            datasets: [{
+                label: "My First dataset",
+                fillColor: "rgba(151,187,205,0.5)",
+                strokeColor: "rgba(151,187,205,0.8)",
+                highlightFill: "rgba(151,187,205,0.75)",
+                highlightStroke: "rgba(151,187,205,1)",
+                data: []
+                    }]
+        };
+        var ctx2 = $("#invest-chart2").get(0).getContext("2d");
+        var invest_chart2 = new Chart(ctx2).Bar(data2, {
+            responsive: true
+        });
+
+        //chart data for agent avg response time
+        var data21 = {
+            labels: [],
+            datasets: [{
+                    label: "My Second dataset",
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: []
+                    }, {
+                    label: "My 2nd dataset",
+                    fillColor: "rgba(220,220,220,0.2)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: []
+                }
+                ]
+        };
+        var ctx21 = $("#invest-chart5").get(0).getContext("2d");
+        var invest_chart21 = new Chart(ctx21).Bar(data21, {
+            responsive: true
+        });
+
+        //visitor response graph
+        for (k = 0; k < temObjT.length; k++) {
+            avgT += temObjT[k].responseTime;
+            minResp.push(temObjT[k].responseTime);
+        }
+        minResp.sort(function (a, b) {
+            return a - b
+        });
+        avgT = avgT / temObjT.length;
+        invest_chart.addData([minResp[0]], "Low");
+        invest_chart.addData([avgT], "Average");
+        invest_chart.addData([minResp[minResp.length - 1]], "High");
+        minResp = [];
+        //agent response time graph
+        for (k = 0; k < temObj3T.length; k++) {
+            avgT3 += temObj3T[k].responseTime;
+            minResp.push(temObj3T[k].responseTime);
+        }
+        minResp.sort(function (a, b) {
+            return a - b
+        });
+        avgT3 = avgT3 / temObj3T.length;
+        invest_chart2.addData([minResp[0]], "Low");
+        invest_chart2.addData([avgT3], "Average");
+        invest_chart2.addData([minResp[minResp.length - 1]], "High");
+
+        //populate agent average response time for each agent
+        for (var i = 0; i < agentList.length; i++) {
+            var tempAgAvg = 0;
+            for (var j = 0; j < agentList[i].chats.length; j++) {
+                tempAgAvg += agentList[i].chats[j];
+            }
+            tempAgAvg = tempAgAvg / agentList[i].chats.length;
+            invest_chart21.addData([tempAgAvg, avgT3], agentList[i].name);
+        }
     });
 });
 /* Formatting function for row details - modify as you need */
@@ -389,6 +604,60 @@ function myProcess(i, zb, x) {
     var y = x[i].getElementsByTagName("line");
     d16 = "";
     for (j = 0; j < y.length; j++) {
+        //code for calculating response time
+        if (j != 0) {
+            // visitor response time
+            if (y[j].attributes.getNamedItem("by").nodeValue != "info" && y[j].hasAttribute("repId") == false) {
+                if (y[j - 1].attributes.getNamedItem("by").nodeValue != "info" && y[j - 1].hasAttribute("repId") == false) {} else {
+                    var vDate = y[j].attributes.getNamedItem("time").nodeValue;
+                    var eDate = new Date(vDate);
+                    var oDate = y[j - 1].attributes.getNamedItem("time").nodeValue;
+                    var sDate = new Date(oDate);
+                    var diffDate = eDate - sDate;
+                    diffDate = diffDate / 1000;
+                    var dd = {
+                        dd1: diffDate,
+                        dd2: i,
+                        dd3: j
+                    };
+                    temObj.push(dd);
+                }
+            }
+            // agent response time
+            if (y[j].attributes.getNamedItem("by").nodeValue != "info" && y[j].hasAttribute("repId") == true) {
+                if (y[j - 1].attributes.getNamedItem("by").nodeValue == "info") {
+                    //console.log(y[j].attributes);
+                    var vDate = y[j].attributes.getNamedItem("time").nodeValue;
+                    var eDate = new Date(vDate);
+                    var oDate = y[j - 1].attributes.getNamedItem("time").nodeValue;
+                    var sDate = new Date(oDate);
+                    var diffDate = eDate - sDate;
+                    diffDate = diffDate / 1000;
+                    var dd = {
+                        dd1: diffDate,
+                        dd2: i,
+                        dd3: j
+                    };
+                    temObj3.push(dd);
+                }
+                if (y[j - 1].attributes.getNamedItem("by").nodeValue != "info" && y[j - 1].hasAttribute("repId") == false) {
+                    //console.log(y[j].attributes);
+                    var vDate = y[j].attributes.getNamedItem("time").nodeValue;
+                    var eDate = new Date(vDate);
+                    var oDate = y[j - 1].attributes.getNamedItem("time").nodeValue;
+                    var sDate = new Date(oDate);
+                    var diffDate = eDate - sDate;
+                    diffDate = diffDate / 1000;
+                    var dd = {
+                        dd1: diffDate,
+                        dd2: i,
+                        dd3: j
+                    };
+                    temObj3.push(dd);
+                }
+            }
+        }
+
         if (y[j].childNodes[0].nodeName == "Text") {
             //who talked
             txt = y[j].attributes[0].nodeValue;
@@ -397,7 +666,7 @@ function myProcess(i, zb, x) {
             }
             title = y[j].getElementsByTagName("Text")[0].childNodes[0].nodeValue;
             tempTime = y[j].getAttribute("time");
-            d16 += splitDate2(startTime) + "<br />";
+            d16 += splitDate2(tempTime) + "<br />";
             if (y[j].attributes[0].nodeValue == "info") {
                 d16 += "<font color='green'>" + txt + ': ' + title + "</font><br /><br />";
             } else if (y[j].attributes[1].nodeName == "repId") {
@@ -411,7 +680,7 @@ function myProcess(i, zb, x) {
             title = y[j].getElementsByTagName("HTML")[0].childNodes[0].nodeValue;
             title = title.replace(/(<p[^>]*>|<\/p>)/g, "");
             tempTime = y[j].getAttribute("time");
-            d16 += splitDate2(startTime) + "<br />";
+            d16 += splitDate2(tempTime) + "<br />";
             if (y[j].attributes[0].nodeValue == "info") {
                 d16 += "<font color='green'>" + txt + ': ' + title + "</font><br /><br />";
             } else if (y[j].attributes[1].nodeName == "repId") {
@@ -421,6 +690,56 @@ function myProcess(i, zb, x) {
             }
         }
     }
+
+    //calculate average chat time for the chats
+    var agentResponse = 0;
+    for (var ii = 0; ii < temObj3.length; ii++) {
+        agentResponse += temObj3[ii].dd1;
+    }
+    if (agentResponse != 0) {
+        agentResponse = agentResponse / temObj3.length;
+    }
+    temObj3 = [];
+    var responses = {
+        responseTime: agentResponse,
+        chat: i
+    }
+    if (agentResponse != 0) {
+        temObj3T.push(responses);
+        var agentExisits2 = false;
+        var agentName = x[i].getElementsByTagName("Rep")[0].attributes.getNamedItem("repName").nodeValue;
+        for (var t = 0; t < agentList.length; t++) {
+            var tempAgent = agentList[t];
+            if (tempAgent.name == agentName) {
+                agentExisits2 = true;
+                tempAgent.chats.push(agentResponse);
+            }
+        }
+        if (agentExisits2 == false) {
+            //code for indidvidual agents
+            var myAgent = {
+                name: agentName,
+                chats: [agentResponse]
+            }
+            agentList.push(myAgent);
+        }
+    }
+    var visitorResponse = 0;
+    for (var ii = 0; ii < temObj.length; ii++) {
+        visitorResponse += temObj[ii].dd1;
+    }
+    if (visitorResponse != 0) {
+        visitorResponse = visitorResponse / temObj.length;
+    }
+    temObj = [];
+    var responses = {
+        responseTime: visitorResponse,
+        chat: i
+    }
+    if (visitorResponse != 0) {
+        temObjT.push(responses);
+    }
+
     //Prechat Survey
     chatObj = x[i].getElementsByTagName("varValue");
     var pcs3 = "";
@@ -457,6 +776,25 @@ function myProcess(i, zb, x) {
                     d18 += pcs3 + ": ";
                     pcs3 = chatObj[k].childNodes[0].nodeValue;
                     d18 += "<b>" + pcs3 + "</b><br /><br />";
+                }
+            }
+            if (chatObj[k].attributes.getNamedItem("name").nodeValue == "chat_customer_satisfaction_1") {
+                var surveyExists = false;
+                var surveyQ = chatObj[k].childNodes[0].nodeValue;
+                for (var t = 0; t < csat.length; t++) {
+                    var tempCSAT = csat[t];
+                    if (tempCSAT.name == surveyQ) {
+                        surveyExists = true;
+                        tempCSAT.total += 1;
+                    }
+                }
+                if (surveyExists == false) {
+                    //code for indidvidual agents
+                    var agent = {
+                        name: surveyQ,
+                        total: 1
+                    }
+                    csat.push(agent);
                 }
             }
         }
@@ -500,16 +838,35 @@ function myProcess(i, zb, x) {
 
                     //code for order total
                     if (pcs2 == myOrderID) {
-                        console.log("it matches");
                         pcs3x = pcs3.toLowerCase();
                         pcs3x = pcs3x.replace("$", "");
                         if (pcs3x.indexOf("n") == -1) {
                             subtotal = parseFloat(pcs3x);
                             if (isNaN(subtotal) == true) {
+                                console.log(x[i]);
                                 divText2 += pcs3x + "<br />"
+                                subtotal = 0;
                             } else {
                                 salesTotal += subtotal;
                             }
+                        }
+                        // code for agent totals
+                        var agentExists = false;
+                        var agentName = x[i].getElementsByTagName("Rep")[0].attributes.getNamedItem("repName").nodeValue;
+                        for (var t = 0; t < agents.length; t++) {
+                            var tempAgent = agents[t];
+                            if (tempAgent.name == agentName) {
+                                agentExists = true;
+                                tempAgent.total += subtotal;
+                            }
+                        }
+                        if (agentExists == false) {
+                            //code for indidvidual agents
+                            var agent = {
+                                name: agentName,
+                                total: subtotal
+                            }
+                            agents.push(agent);
                         }
                     }
                 }
@@ -675,4 +1032,14 @@ function filterColumn(i) {
     $('#example').DataTable().column(i).search(
         $('#col' + i + '_filter').val()
     ).draw();
+}
+
+function revenueTable() {
+    var t2 = $('#example1').DataTable();
+    for (var i = 0; i < agents.length; i++) {
+        t2.row.add([
+                      agents[i].name, agents[i].total
+                  ]);
+    }
+    $('#example1').DataTable().draw();
 }
