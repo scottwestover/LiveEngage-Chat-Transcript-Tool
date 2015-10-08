@@ -22,8 +22,10 @@ Note - This tool is still under development. As you are using the tool if anythi
 4. Click on "Load unpacked extension...", and choose the "LiveEngage Chat Transcript Tool" folder you unzipped earlier.
 
 ##Updates
-Master - Fixed issue where repName was not loading properly
+Master - Fixed issue where the date on the chat lines was not displaying correctly. Updated the interface to now have renue on its own tab. Added reporting for: agent/visitor average response time, average response time by agent, and CSAT reporting.
 
 Version 1.0 - Initial Release
 
 Version 1.1 - Added in ability to search each survey
+
+Version 1.2 - Fixed issue where repName was not loading properly
