@@ -129,6 +129,7 @@ function searchXML(xmlDoc) {
     $('#t2').show();
     $('#t3').show();
     $('#t4').show();
+    $('#t5').show();
     revenueTable();
 }
 
@@ -136,6 +137,7 @@ $(document).ready(function () {
     $('#t2').hide();
     $('#t3').hide();
     $('#t4').hide();
+    $('#t5').hide();
     $("#xmlFileinput").change(function () {
         handleFiles(this.files);
     });
@@ -402,6 +404,11 @@ $(document).ready(function () {
             invest_chart21.addData([tempAgAvg, avgT3], agentList[i].name);
         }
     });
+
+    $('a[href=#chart4]').on('shown.bs.tab', function () {
+        console.log(1);
+        google.maps.event.trigger(map, "resize");
+    });
 });
 /* Formatting function for row details - modify as you need */
 function format(d) {
@@ -599,6 +606,12 @@ function myProcess(i, zb, x) {
     } else {
         d15 = x[i].getElementsByTagName("geoISP")[0].childNodes[0].nodeValue;
     }
+
+    var long = x[i].getElementsByTagName("geoLong")[0].childNodes[0].nodeValue;
+    var lat = x[i].getElementsByTagName("geoLat")[0].childNodes[0].nodeValue;
+    lat = parseFloat(lat);
+    long = parseFloat(long);
+    addPoints(lat, long);
 
     //chat transcript
     var y = x[i].getElementsByTagName("line");
@@ -853,20 +866,25 @@ function myProcess(i, zb, x) {
                         // code for agent totals
                         var agentExists = false;
                         var agentName = x[i].getElementsByTagName("Rep")[0].attributes.getNamedItem("repName").nodeValue;
-                        for (var t = 0; t < agents.length; t++) {
-                            var tempAgent = agents[t];
-                            if (tempAgent.name == agentName) {
-                                agentExists = true;
-                                tempAgent.total += subtotal;
+                        if (subtotal != 0) {
+                            for (var t = 0; t < agents.length; t++) {
+                                var tempAgent = agents[t];
+                                if (tempAgent.name == agentName) {
+                                    agentExists = true;
+                                    tempAgent.total += subtotal;
+                                    tempAgent.conversions += 1;
+                                }
                             }
-                        }
-                        if (agentExists == false) {
-                            //code for indidvidual agents
-                            var agent = {
-                                name: agentName,
-                                total: subtotal
+                            if (agentExists == false) {
+                                //code for indidvidual agents
+                                var agent = {
+                                    name: agentName,
+                                    total: subtotal,
+                                    conversions: 1,
+                                    aov: 0
+                                }
+                                agents.push(agent);
                             }
-                            agents.push(agent);
                         }
                     }
                 }
@@ -1037,9 +1055,69 @@ function filterColumn(i) {
 function revenueTable() {
     var t2 = $('#example1').DataTable();
     for (var i = 0; i < agents.length; i++) {
+        agents[i].aov = (agents[i].total / agents[i].conversions).toFixed(2);
         t2.row.add([
-                      agents[i].name, agents[i].total
+                      agents[i].name, agents[i].conversions, agents[i].total.toFixed(2), agents[i].aov
                   ]);
     }
     $('#example1').DataTable().draw();
+}
+var map, heatmap;
+
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 3,
+        center: {
+            lat: 37.775,
+            lng: -122.434
+        },
+        mapTypeId: google.maps.MapTypeId.SATELLITE
+    });
+
+    heatmap = new google.maps.visualization.HeatmapLayer({
+        data: getPoints(),
+        map: map
+    });
+}
+
+function toggleHeatmap() {
+    heatmap.setMap(heatmap.getMap() ? null : map);
+}
+
+function changeGradient() {
+    var gradient = [
+                    'rgba(0, 255, 255, 0)',
+                    'rgba(0, 255, 255, 1)',
+                    'rgba(0, 191, 255, 1)',
+                    'rgba(0, 127, 255, 1)',
+                    'rgba(0, 63, 255, 1)',
+                    'rgba(0, 0, 255, 1)',
+                    'rgba(0, 0, 223, 1)',
+                    'rgba(0, 0, 191, 1)',
+                    'rgba(0, 0, 159, 1)',
+                    'rgba(0, 0, 127, 1)',
+                    'rgba(63, 0, 91, 1)',
+                    'rgba(127, 0, 63, 1)',
+                    'rgba(191, 0, 31, 1)',
+                    'rgba(255, 0, 0, 1)'
+                ]
+    heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+}
+
+function changeRadius() {
+    heatmap.set('radius', heatmap.get('radius') ? null : 20);
+}
+
+function changeOpacity() {
+    heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+}
+
+// Heatmap data: 500 Points
+function getPoints() {
+    return [];
+}
+
+function addPoints(x, y) {
+    var latLng = new google.maps.LatLng(x, y);
+    heatmap.data.push(latLng);
 }

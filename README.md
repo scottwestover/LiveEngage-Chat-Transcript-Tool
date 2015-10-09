@@ -14,18 +14,15 @@ Note - This tool is still under development. As you are using the tool if anythi
 5. You can then click on the green plus icon to expand the row to show more data.
 6. You can search the transcripts by using the built in search bar. 
 
-##Install the LiveEngage-Chat-Transcript-Tool as a Chrome Extension
-
-1. Download the zipped version of the Chat Transcript Tool, and extract the contents of this folder.
-2. Open your browser and navigate to your extensions by going to "chrome://extensions/" in your navbar, or by clicking on "Extensions" tab in the menu by clicking on "Menu -> More Tools -> Extensions".
-3. You must enable the developer mode to install the extension. 
-4. Click on "Load unpacked extension...", and choose the "LiveEngage Chat Transcript Tool" folder you unzipped earlier.
-
 ##Updates
-Master - Fixed issue where the date on the chat lines was not displaying correctly. Updated the interface to now have renue on its own tab. Added reporting for: agent/visitor average response time, average response time by agent, and CSAT reporting.
+Master - Updated Revenue tab to include total conversion, and average order value. Added in Heatmap that displays where chatters are located.
 
 Version 1.0 - Initial Release
 
 Version 1.1 - Added in ability to search each survey
 
 Version 1.2 - Fixed issue where repName was not loading properly
+
+Version 1.4 - Fixed issue where the date on the chat lines was not displaying correctly
+            - Updated the interface to now have revenue on its own tab
+            - Added reporting for: agent/visitor average response time, average response time by agent, and CSAT reporting
