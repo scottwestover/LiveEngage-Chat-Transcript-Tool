@@ -23,6 +23,6 @@ Version 1.1 - Added in ability to search each survey
 
 Version 1.2 - Fixed issue where repName was not loading properly
 
-Version 1.4 - Fixed issue where the date on the chat lines was not displaying correctly
+Version 1.3 - Fixed issue where the date on the chat lines was not displaying correctly
             - Updated the interface to now have revenue on its own tab
             - Added reporting for: agent/visitor average response time, average response time by agent, and CSAT reporting
