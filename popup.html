@@ -76,6 +76,8 @@
                                             <label for="orderIDVar"> <strong>Order Total Variable:</strong></label>
                                             <input type="text" id="orderIDVar">
                                         </td>
+                                        <td>
+                                            <td>&#160;&#160;<span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" title="Input the Order Total Variable ID from your chat transcripts to see your revenue report. This information will be saved in a cookie so you will not have to type it in each time." data-placement="bottom"></span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -147,7 +149,7 @@
                 <div role="tabpanel" class="tab-pane active" id="home">
                     <div>
                         <br>
-                        <b>Toggle Main Columns: </b><a class="toggle-vis" data-column="2">Chat Start Time</a> - <a class="toggle-vis" data-column="3">Chat End Time</a> - <a class="toggle-vis" data-column="4">Duration</a> - <a class="toggle-vis" data-column="5">Skill Group</a> - <a class="toggle-vis" data-column="6">Operator</a> - <a class="toggle-vis" data-column="9">Real Time Session ID</a> - <a class="toggle-vis" data-column="21">Pre Chat</a> - <a class="toggle-vis" data-column="22">Post Chat</a> - <a class="toggle-vis" data-column="23">Offline</a> - <a class="toggle-vis" data-column="25">Operator</a>
+                        <b>&#160;Toggle Main Columns: </b><a class="toggle-vis" data-column="2">Chat Start Time</a> - <a class="toggle-vis" data-column="3">Chat End Time</a> - <a class="toggle-vis" data-column="4">Duration</a> - <a class="toggle-vis" data-column="5">Skill Group</a> - <a class="toggle-vis" data-column="6">Operator</a> - <a class="toggle-vis" data-column="9">Real Time Session ID</a> - <a class="toggle-vis" data-column="21">Pre Chat</a> - <a class="toggle-vis" data-column="22">Post Chat</a> - <a class="toggle-vis" data-column="23">Offline</a> - <a class="toggle-vis" data-column="25">Operator</a>&#160;&#160;<span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" title="Click to show/hide these columns in the table below" data-placement="bottom"></span>
                     </div>
                     <br />
                     <!-- Search Survey -->
@@ -171,6 +173,7 @@
                                         <label for="col24_filter"> <strong> Search Agent Survey:</strong></label>
                                         <input type="text" class="column_filter" id="col24_filter" data-column="24" placeholder="Search Agent Survey">
                                     </td>
+                                    <td>&#160;&#160;<span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" title="Use these search bars to search only the surveys instead of searching all the meta data" data-placement="bottom"></span></td>
                                 </tr>
                             </table>
                         </div>
@@ -256,9 +259,12 @@
                             <canvas id="invest-chart2"></canvas>
                         </div>
                     </div>
+                    <br>
                     <div id="row">
-                        <div>Avg Response Time Per Agent - Seconds (Grey is average for all agents)</div>
-                        <canvas id="invest-chart5"></canvas>
+                        <div class="col-md-12">
+                            <div>Avg Response Time Per Agent - Seconds (Grey is average for all agents)</div>
+                            <canvas id="invest-chart5"></canvas>
+                        </div>
                     </div>
                     <br>
                 </div>

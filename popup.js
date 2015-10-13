@@ -135,6 +135,7 @@ function searchXML(xmlDoc) {
 }
 
 $(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
     initMap();
     checkCookie();
     $('#t2').hide();
@@ -864,6 +865,8 @@ function myProcess(i, zb, x) {
                             } else {
                                 salesTotal += subtotal;
                             }
+                        } else {
+                            subtotal = 0;
                         }
                         // code for agent totals
                         var agentExists = false;

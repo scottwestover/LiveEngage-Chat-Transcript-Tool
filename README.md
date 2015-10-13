@@ -15,7 +15,7 @@ Note - This tool is still under development. As you are using the tool if anythi
 6. You can search the transcripts by using the built in search bar. 
 
 ##Updates
-Master - Added local storage to save the Order Total Variable. Added Instructions and how to use the xml tool pages. Fixed issue where map would not always load properly.
+Master - Added local storage to save the Order Total Variable. Added Instructions and how to use the xml tool pages. Fixed issue where map would not always load properly. Fixed an issue where the revenue would not populate. Added tool tips to the tool.
 
 Version 1.0 - Initial Release
 
@@ -29,4 +29,3 @@ Version 1.3 - Fixed issue where the date on the chat lines was not displaying co
             
 Version 1.4 - Update Revenue tab to include total conversion and average order value
             - Added Heatmap that displays where chats are coming from
-
