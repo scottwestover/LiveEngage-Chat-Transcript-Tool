@@ -1067,7 +1067,7 @@ var map, heatmap;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 3,
+        zoom: 13,
         center: {
             lat: 37.775,
             lng: -122.434
@@ -1115,7 +1115,9 @@ function changeOpacity() {
 
 // Heatmap data: 500 Points
 function getPoints() {
-    return [];
+    return [
+        new google.maps.LatLng(37.751266, -122.403355)
+  ];
 }
 
 function addPoints(x, y) {
