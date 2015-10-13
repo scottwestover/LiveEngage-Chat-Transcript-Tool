@@ -15,7 +15,7 @@ Note - This tool is still under development. As you are using the tool if anythi
 6. You can search the transcripts by using the built in search bar. 
 
 ##Updates
-Master - Added local storage to save the Order Total Variable. Added Instructions and how to use the xml tool pages.
+Master - Added local storage to save the Order Total Variable. Added Instructions and how to use the xml tool pages. Fixed issue where map would not always load properly.
 
 Version 1.0 - Initial Release
 
