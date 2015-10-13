@@ -135,6 +135,7 @@ function searchXML(xmlDoc) {
 }
 
 $(document).ready(function () {
+    initMap();
     checkCookie();
     $('#t2').hide();
     $('#t3').hide();
@@ -1067,7 +1068,7 @@ var map, heatmap;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 13,
+        zoom: 3,
         center: {
             lat: 37.775,
             lng: -122.434
@@ -1115,9 +1116,7 @@ function changeOpacity() {
 
 // Heatmap data: 500 Points
 function getPoints() {
-    return [
-        new google.maps.LatLng(37.751266, -122.403355)
-  ];
+    return [];
 }
 
 function addPoints(x, y) {
