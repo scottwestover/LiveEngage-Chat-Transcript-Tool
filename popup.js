@@ -111,6 +111,7 @@ function searchXML(xmlDoc) {
     var xmlElements2 = $(xmlDoc).find('var');
     var length = xmlElements.length;
     var index = 0;
+    setCookie();
     var process = function () {
         for (; index < length; index++) {
             var toProcess = xmlElements[index];
@@ -134,6 +135,7 @@ function searchXML(xmlDoc) {
 }
 
 $(document).ready(function () {
+    checkCookie();
     $('#t2').hide();
     $('#t3').hide();
     $('#t4').hide();
@@ -406,7 +408,6 @@ $(document).ready(function () {
     });
 
     $('a[href=#chart4]').on('shown.bs.tab', function () {
-        console.log(1);
         google.maps.event.trigger(map, "resize");
     });
 });
@@ -1120,4 +1121,27 @@ function getPoints() {
 function addPoints(x, y) {
     var latLng = new google.maps.LatLng(x, y);
     heatmap.data.push(latLng);
+}
+
+function setCookie() {
+    if (typeof (Storage) !== "undefined") {
+        // Store
+        var myOrderVar = document.getElementById("orderIDVar").value;
+        localStorage.setItem("lastname", myOrderVar);
+    } else {
+        console.log("Sorry, your browser does not support Web Storage...");
+    }
+}
+
+function checkCookie() {
+    if (typeof (Storage) !== "undefined") {
+        console.log(localStorage.getItem("lastname"));
+        if (localStorage.getItem("lastname") == null) {
+            console.log("Not set yet");
+        } else {
+            document.getElementById("orderIDVar").value = localStorage.getItem("lastname");
+        }
+    } else {
+        console.log("Sorry, your browser does not support Web Storage...");
+    }
 }
