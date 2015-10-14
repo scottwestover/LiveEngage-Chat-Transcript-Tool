@@ -20,7 +20,15 @@
     <link rel="stylesheet" href="css/widget.css">
     <!-- Chat JS -->
     <script type="text/javascript" charset="utf8" src="js/Chart.min.js"></script>
+    <!-- Google Maps -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALBx_wtoG6h43I124sbf9Tj3MuLgA7u38&libraries=visualization"></script>
+    <!-- Code for custom buttons -->
+    <link rel="stylesheet" href="css/buttons.dataTables.min.css">
+    <script type="text/javascript" charset="utf8" src="js/buttons.html5.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="js/jszip.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="js/pdfmake.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="js/vfs_fonts.js"></script>
     <style>
         html,
         body {
@@ -78,6 +86,12 @@
                                         </td>
                                         <td>
                                             <td>&#160;&#160;<span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" title="Input the Order Total Variable ID from your chat transcripts to see your revenue report. This information will be saved in a cookie so you will not have to type it in each time." data-placement="bottom"></span></td>
+                                            <td>&#160;&#160;&#160;&#160;
+                                                <label for="CSATIDVar"> <strong>CSAT Question Variable:</strong></label>
+                                                <input type="text" id="CSATIDVar" value="chat_customer_satisfaction_1">
+                                            </td>
+                                            <td>
+                                                <td>&#160;&#160;<span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" title="Input the CSAT Question ID from your chat transcripts to see your CSAT Reprt. This information will be saved in a cookie so you will not have to type it in each time. If you use the default CSAT routing type, this ID is usally chat_customer_satisfaction_1." data-placement="bottom"></span></td>
                                     </tr>
                                 </table>
                             </div>

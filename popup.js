@@ -24,11 +24,12 @@ var avgT2 = 0;
 //var for average visitor response time
 var avgT3 = 0;
 var csat = [];
-
 //revenue by agent code
 var agents = [];
 //list of agents used for average response time
 var agentList = [];
+//variable for custom CSAT question
+var csatID = "";
 
 loadingPannel = loadingPannel || (function () {
     var lpDialog = $("" +
@@ -151,6 +152,19 @@ $(document).ready(function () {
     });
 
     var table = $('#example').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+                'excelHtml5'
+            /*,
+                            'csvHtml5'
+                        ,
+                                    {
+                                        extend: 'pdfHtml5',
+                                        orientation: 'landscape',
+                                        pageSize: 'A2'
+                                    }*/
+            ],
         "deferRender": true,
         "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
         "columnDefs": [{
@@ -794,7 +808,8 @@ function myProcess(i, zb, x) {
                     d18 += "<b>" + pcs3 + "</b><br /><br />";
                 }
             }
-            if (chatObj[k].attributes.getNamedItem("name").nodeValue == "chat_customer_satisfaction_1") {
+            csatID = document.getElementById("CSATIDVar").value;
+            if (chatObj[k].attributes.getNamedItem("name").nodeValue == csatID) {
                 var surveyExists = false;
                 var surveyQ = chatObj[k].childNodes[0].nodeValue;
                 for (var t = 0; t < csat.length; t++) {
@@ -1131,7 +1146,9 @@ function setCookie() {
     if (typeof (Storage) !== "undefined") {
         // Store
         var myOrderVar = document.getElementById("orderIDVar").value;
+        var myCSATVar = document.getElementById("CSATIDVar").value;
         localStorage.setItem("lastname", myOrderVar);
+        localStorage.setItem("csatName", myCSATVar);
     } else {
         console.log("Sorry, your browser does not support Web Storage...");
     }
@@ -1139,11 +1156,17 @@ function setCookie() {
 
 function checkCookie() {
     if (typeof (Storage) !== "undefined") {
-        console.log(localStorage.getItem("lastname"));
+        //console.log(localStorage.getItem("lastname"));
+        //console.log(localStorage.getItem("csatName"));
         if (localStorage.getItem("lastname") == null) {
-            console.log("Not set yet");
+            //console.log("Not set yet");
         } else {
             document.getElementById("orderIDVar").value = localStorage.getItem("lastname");
+        }
+        if (localStorage.getItem("csatName") == null) {
+            //console.log("Not set yet");
+        } else {
+            document.getElementById("CSATIDVar").value = localStorage.getItem("csatName");
         }
     } else {
         console.log("Sorry, your browser does not support Web Storage...");
