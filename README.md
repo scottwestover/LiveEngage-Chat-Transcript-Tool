@@ -17,25 +17,26 @@ Note - This tool is still under development. As you are using the tool if anythi
 ##Updates
 Master - Updated the interface to now have a button for chooseing which columns are visibile. The button makes it easier to distinguish which columns are visible/not visible. Added a disclaimer about the tool.
 
-Version 1.0 - Initial Release
-
-Version 1.1 - Added in ability to search each survey
-
-Version 1.2 - Fixed issue where repName was not loading properly
-
-Version 1.3 - Fixed issue where the date on the chat lines was not displaying correctly
-            - Updated the interface to now have revenue on its own tab
-            - Added reporting for: agent/visitor average response time, average response time by agent, and CSAT reporting
-            
-Version 1.4 - Update Revenue tab to include total conversion and average order value
-            - Added Heatmap that displays where chats are coming from
-
-Version 1.5 - Added local storage to save the Order Total Variable
-            - Added pages for instructions and how to use the XML tool
-            - Fixed issue where map would not always load properly
-            - Fixed an issue where revenue would not populate
-            - Added tool tips to the tool
-            
-Version 1.6 - Added the ability to export to Excel and copy contents of the table
-            - Added a field to choose your own custom CSAT Question by using its ID
-            - Added a cookie to save the ID of the CSAT Question and a tooltip for the CSAT Question ID
+* Version 1.0 
+ * Initial Release
+* Version 1.1 
+ * Added in ability to search each survey
+* Version 1.2 
+ * Fixed issue where repName was not loading properly
+* Version 1.3 
+ * Fixed issue where the date on the chat lines was not displaying correctly
+ * Updated the interface to now have revenue on its own tab
+ * Added reporting for: agent/visitor average response time, average response time by agent, and CSAT reporting
+* Version 1.4 
+ * Update Revenue tab to include total conversion and average order value
+ * Added Heatmap that displays where chats are coming from
+* Version 1.5 
+ * Added local storage to save the Order Total Variable
+ * Added pages for instructions and how to use the XML tool
+ * Fixed issue where map would not always load properly
+ * Fixed an issue where revenue would not populate
+ * Added tool tips to the tool
+* Version 1.6 
+ * Added the ability to export to Excel and copy contents of the table
+ * Added a field to choose your own custom CSAT Question by using its ID
+ * Added a cookie to save the ID of the CSAT Question and a tooltip for the CSAT Question ID
