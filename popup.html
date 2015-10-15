@@ -29,6 +29,8 @@
     <script type="text/javascript" charset="utf8" src="js/jszip.min.js"></script>
     <script type="text/javascript" charset="utf8" src="js/pdfmake.min.js"></script>
     <script type="text/javascript" charset="utf8" src="js/vfs_fonts.js"></script>
+    <script type="text/javascript" charset="utf8" src="js/buttons.print.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="js/buttons.colVis.min.js"></script>
     <style>
         html,
         body {
@@ -68,7 +70,8 @@
                 <form class="form-horizontal well2">
                     <legend>
                         <h4>
-          <div>XML Chat Transcript Widget<br></div>
+          <div>XML Chat Transcript Widget<br>
+              <h6>This tool is created to help you parse and read the transcripts that are provided by LivePerson. This is not a product that is supported by LivePerson.  This type of tool can be used as an example for your developers to create your own custom reporting</h6></div>
         </h4>
                     </legend>
                     <fieldset>
@@ -161,11 +164,11 @@
             <!-- Tab panes -->
             <div class="tab-content" id="too2">
                 <div role="tabpanel" class="tab-pane active" id="home">
-                    <div>
+                   <!-- <div>
                         <br>
-                        <b>&#160;Toggle Main Columns: </b><a class="toggle-vis" data-column="2">Chat Start Time</a> - <a class="toggle-vis" data-column="3">Chat End Time</a> - <a class="toggle-vis" data-column="4">Duration</a> - <a class="toggle-vis" data-column="5">Skill Group</a> - <a class="toggle-vis" data-column="6">Operator</a> - <a class="toggle-vis" data-column="9">Real Time Session ID</a> - <a class="toggle-vis" data-column="21">Pre Chat</a> - <a class="toggle-vis" data-column="22">Post Chat</a> - <a class="toggle-vis" data-column="23">Offline</a> - <a class="toggle-vis" data-column="25">Operator</a>&#160;&#160;<span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" title="Click to show/hide these columns in the table below" data-placement="bottom"></span>
+                        <b>&#160;Toggle Main Columns: </b><a class="toggle-vis" data-column="2">Chat Start Time</a> - <a class="toggle-vis" data-column="3">Chat End Time</a> - <a class="toggle-vis" data-column="4">Duration</a> - <a class="toggle-vis" data-column="5">Skill Group</a> - <a class="toggle-vis" data-column="6">Operator</a> - <a class="toggle-vis" data-column="9">Session ID</a> - <a class="toggle-vis" data-column="21">Pre Chat</a> - <a class="toggle-vis" data-column="22">Post Chat</a> - <a class="toggle-vis" data-column="23">Offline</a> - <a class="toggle-vis" data-column="25">Operator</a>&#160;&#160;<span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" title="Click to show/hide these columns in the table below" data-placement="bottom"></span>
                     </div>
-                    <br />
+                    <br />-->
                     <!-- Search Survey -->
                     <div id="surveySearch" class="panel panel-default">
                         <div class="panel-body">
@@ -205,7 +208,7 @@
                                     <th>Operator</th>
                                     <th>Browser</th>
                                     <th>Host IP</th>
-                                    <th>Real Time Session ID</th>
+                                    <th>Session ID</th>
                                     <th>Country</th>
                                     <th>City</th>
                                     <th>Organization</th>

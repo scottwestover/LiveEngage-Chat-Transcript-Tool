@@ -1,34 +1,34 @@
-var salesTotal = 0; //added to keep track of order total
+var salesTotal = 0; /*added to keep track of order total*/
 var divText = "";
-var divText2 = ""; //added to track error in sales totals
+var divText2 = ""; /*added to track error in sales totals*/
 var loadingPannel;
 var myOrderID = "";
-//visitor response time
+/*visitor response time*/
 var myLineChart;
-//csat totals
+/*csat totals*/
 var myLineChart2;
-//csat avg
+/*csat avg*/
 var myLineChart3;
-//holder for visitor response
+/*holder for visitor response*/
 var temObj = [];
 var temObjT = [];
-//var holder for csat scores
+/*var holder for csat scores*/
 var temObj2 = [];
-//var holder for agent response
+/*var holder for agent response*/
 var temObj3 = [];
 var temObj3T = [];
-//var for average response time
+/*var for average response time*/
 var avgT = 0;
-//var for average csat score
+/*var for average csat score*/
 var avgT2 = 0;
-//var for average visitor response time
+/*var for average visitor response time*/
 var avgT3 = 0;
 var csat = [];
-//revenue by agent code
+/*revenue by agent code*/
 var agents = [];
-//list of agents used for average response time
+/*list of agents used for average response time*/
 var agentList = [];
-//variable for custom CSAT question
+/*variable for custom CSAT question*/
 var csatID = "";
 
 loadingPannel = loadingPannel || (function () {
@@ -59,9 +59,9 @@ loadingPannel = loadingPannel || (function () {
 })();
 
 function handleFiles(files) {
-    // Check for the various File API support.
+    /*Check for the various File API support.*/
     if (window.FileReader) {
-        // FileReader are supported.
+        /* FileReader are supported.*/
         getOrderID();
         loadingPannel.show();
         getAsText(files[0]);
@@ -72,16 +72,16 @@ function handleFiles(files) {
 
 function getAsText(fileToRead) {
     var reader = new FileReader();
-    // Handle errors load
+    /* Handle errors load*/
     reader.onload = loadHandler;
     reader.onerror = errorHandler;
-    // Read file into memory as UTF-8      
+    /* Read file into memory as UTF-8  */
     reader.readAsText(fileToRead);
 }
 
 function loadHandler(event) {
     var xml = event.target.result;
-    //alert(xml);   
+    /*alert(xml);   */
     doc = StringtoXML(xml);
     searchXML(doc);
 }
@@ -116,7 +116,7 @@ function searchXML(xmlDoc) {
     var process = function () {
         for (; index < length; index++) {
             var toProcess = xmlElements[index];
-            // Perform xml processing
+            /* Perform xml processing*/
             myProcess(index, xmlElements2, x);
             if (index + 1 < length && index % 100 == 0) {
                 setTimeout(process, 0);
@@ -155,7 +155,10 @@ $(document).ready(function () {
         dom: 'Bfrtip',
         buttons: [
             'copyHtml5',
-                'excelHtml5'
+                'excelHtml5', {
+                extend: 'colvis',
+                columns: [2,3,4,5,6,9,21,22,23,25]
+            }
             /*,
                             'csvHtml5'
                         ,
@@ -163,7 +166,21 @@ $(document).ready(function () {
                                         extend: 'pdfHtml5',
                                         orientation: 'landscape',
                                         pageSize: 'A2'
-                                    }*/
+                                    }
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+                },
+                customize: function (win) {
+                    $(win.document.body)
+                        .css('font-size', '6pt');
+
+                    $(win.document.body).find('table')
+                        .addClass('compact')
+                        .css('font-size', 'inherit');
+                }
+                }*/
             ],
         "deferRender": true,
         "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
@@ -186,8 +203,7 @@ $(document).ready(function () {
         }
             ]
     });
-
-    // Setup - add a text input to each footer cell
+    /* Setup - add a text input to each footer cell*/
     $('.srcT').each(function () {
         $(this).html('<input type="text" placeholder="Search" size="4"/>');
     });
@@ -196,7 +212,7 @@ $(document).ready(function () {
         filterColumn($(this).attr('data-column'));
     });
 
-    // Apply the search
+    /* Apply the search*/
     table.columns().every(function () {
         var that = this;
 
@@ -207,16 +223,16 @@ $(document).ready(function () {
         });
     });
 
-    // Add event listener for opening and closing details - whole row
+    /* Add event listener for opening and closing details - whole row*/
     $('#example tbody').on('click', 'tr', function () {
         var tr = $(this);
         var row = table.row(tr);
         if (row.child.isShown()) {
-            // This row is already open - close it
+            /* This row is already open - close it*/
             row.child.hide();
             tr.removeClass('shown');
         } else {
-            // Open this row
+            /* Open this row*/
             row.child(format(row.data())).show();
             tr.addClass('shown');
         }
@@ -231,19 +247,19 @@ $(document).ready(function () {
         }
     });
 
-    //visibility buttons
+    /*visibility buttons*/
     $('a.toggle-vis').on('click', function (e) {
         e.preventDefault();
 
-        // Get the column API object
+        /*Get the column API object*/
         var column = table.column($(this).attr('data-column'));
 
-        // Toggle the visibility
+        /* Toggle the visibility*/
         column.visible(!column.visible());
     });
 
     $('a[href=#chart2]').on('shown.bs.tab', function () {
-        //chart for pie chart
+        /*chart for pie chart*/
         var pieData = [{
             value: 300,
             color: "#F7464A",
@@ -255,7 +271,7 @@ $(document).ready(function () {
             responsive: true
         });
 
-        //chart data for CSAT
+        /*chart data for CSAT*/
         var data = {
             labels: [],
             datasets: [{
@@ -322,7 +338,7 @@ $(document).ready(function () {
     });
 
     $('a[href=#chart]').on('shown.bs.tab', function () {
-        //chart data for visitor
+        /*chart data for visitor*/
         var minResp = [];
         var data = {
             labels: [],
@@ -340,7 +356,7 @@ $(document).ready(function () {
             responsive: true
         });
 
-        //chart data for agent
+        /*chart data for agent*/
         var data2 = {
             labels: [],
             datasets: [{
@@ -357,7 +373,7 @@ $(document).ready(function () {
             responsive: true
         });
 
-        //chart data for agent avg response time
+        /*chart data for agent avg response time*/
         var data21 = {
             labels: [],
             datasets: [{
@@ -386,7 +402,7 @@ $(document).ready(function () {
             responsive: true
         });
 
-        //visitor response graph
+        /*visitor response graph*/
         for (k = 0; k < temObjT.length; k++) {
             avgT += temObjT[k].responseTime;
             minResp.push(temObjT[k].responseTime);
@@ -399,7 +415,7 @@ $(document).ready(function () {
         invest_chart.addData([avgT], "Average");
         invest_chart.addData([minResp[minResp.length - 1]], "High");
         minResp = [];
-        //agent response time graph
+        /*agent response time graph*/
         for (k = 0; k < temObj3T.length; k++) {
             avgT3 += temObj3T[k].responseTime;
             minResp.push(temObj3T[k].responseTime);
@@ -412,7 +428,7 @@ $(document).ready(function () {
         invest_chart2.addData([avgT3], "Average");
         invest_chart2.addData([minResp[minResp.length - 1]], "High");
 
-        //populate agent average response time for each agent
+        /*populate agent average response time for each agent*/
         for (var i = 0; i < agentList.length; i++) {
             var tempAgAvg = 0;
             for (var j = 0; j < agentList[i].chats.length; j++) {
@@ -429,7 +445,7 @@ $(document).ready(function () {
 });
 /* Formatting function for row details - modify as you need */
 function format(d) {
-    // `d` is the original data object for the row
+    /*`d` is the original data object for the row*/
     return '<table class="tableModal" cellpadding="5" cellspacing="0" border="1" style="padding-left:50px;">' +
         '<tr>' +
         '<td><b>Chat Transcript:</b></td>' +
@@ -630,13 +646,13 @@ function myProcess(i, zb, x) {
     long = parseFloat(long);
     addPoints(lat, long);
 
-    //chat transcript
+    /*chat transcript*/
     var y = x[i].getElementsByTagName("line");
     d16 = "";
     for (j = 0; j < y.length; j++) {
-        //code for calculating response time
+        /*code for calculating response time*/
         if (j != 0) {
-            // visitor response time
+            /* visitor response time*/
             if (y[j].attributes.getNamedItem("by").nodeValue != "info" && y[j].hasAttribute("repId") == false) {
                 if (y[j - 1].attributes.getNamedItem("by").nodeValue != "info" && y[j - 1].hasAttribute("repId") == false) {} else {
                     var vDate = y[j].attributes.getNamedItem("time").nodeValue;
@@ -653,7 +669,7 @@ function myProcess(i, zb, x) {
                     temObj.push(dd);
                 }
             }
-            // agent response time
+            /* agent response time*/
             if (y[j].attributes.getNamedItem("by").nodeValue != "info" && y[j].hasAttribute("repId") == true) {
                 if (y[j - 1].attributes.getNamedItem("by").nodeValue == "info") {
                     //console.log(y[j].attributes);
@@ -671,7 +687,7 @@ function myProcess(i, zb, x) {
                     temObj3.push(dd);
                 }
                 if (y[j - 1].attributes.getNamedItem("by").nodeValue != "info" && y[j - 1].hasAttribute("repId") == false) {
-                    //console.log(y[j].attributes);
+                    /*console.log(y[j].attributes);*/
                     var vDate = y[j].attributes.getNamedItem("time").nodeValue;
                     var eDate = new Date(vDate);
                     var oDate = y[j - 1].attributes.getNamedItem("time").nodeValue;
@@ -689,7 +705,7 @@ function myProcess(i, zb, x) {
         }
 
         if (y[j].childNodes[0].nodeName == "Text") {
-            //who talked
+            /*who talked*/
             txt = y[j].attributes[0].nodeValue;
             if (txt == "You") {
                 txt = "Visitor";
@@ -705,7 +721,6 @@ function myProcess(i, zb, x) {
                 d16 += "<font color='red'>" + txt + ': ' + title + "</font><br /><br />";
             }
         } else {
-            //who talked
             txt = y[j].attributes[0].nodeValue;
             title = y[j].getElementsByTagName("HTML")[0].childNodes[0].nodeValue;
             title = title.replace(/(<p[^>]*>|<\/p>)/g, "");
@@ -721,7 +736,7 @@ function myProcess(i, zb, x) {
         }
     }
 
-    //calculate average chat time for the chats
+    /*calculate average chat time for the chats*/
     var agentResponse = 0;
     for (var ii = 0; ii < temObj3.length; ii++) {
         agentResponse += temObj3[ii].dd1;
@@ -746,7 +761,7 @@ function myProcess(i, zb, x) {
             }
         }
         if (agentExisits2 == false) {
-            //code for indidvidual agents
+            /*code for indidvidual agents*/
             var myAgent = {
                 name: agentName,
                 chats: [agentResponse]
@@ -770,7 +785,7 @@ function myProcess(i, zb, x) {
         temObjT.push(responses);
     }
 
-    //Prechat Survey
+    /*Prechat Survey*/
     chatObj = x[i].getElementsByTagName("varValue");
     var pcs3 = "";
     d17 = "";
@@ -790,7 +805,7 @@ function myProcess(i, zb, x) {
             }
         }
     }
-    //Post Chat Survey
+    /*Post Chat Survey*/
     d18 = "";
     chatObj = x[i].getElementsByTagName("varValue");
     pcs3 = "";
@@ -820,7 +835,7 @@ function myProcess(i, zb, x) {
                     }
                 }
                 if (surveyExists == false) {
-                    //code for indidvidual agents
+                    /*code for indidvidual agents*/
                     var agent = {
                         name: surveyQ,
                         total: 1
@@ -830,7 +845,7 @@ function myProcess(i, zb, x) {
             }
         }
     }
-    //Offline Survey
+    /*Offline Survey*/
     chatObj = x[i].getElementsByTagName("varValue");
     d19 = "";
     pcs3 = "";
@@ -850,7 +865,7 @@ function myProcess(i, zb, x) {
             }
         }
     }
-    //Operator Survey
+    /*Operator Survey*/
     chatObj = x[i].getElementsByTagName("varValue");
     d23 = "";
     pcs3 = "";
@@ -859,15 +874,13 @@ function myProcess(i, zb, x) {
         pcs2 = chatObj[k].attributes[2].nodeValue;
         if (pcs2 == "Operator") {
             d24 = "Y";
-            pcs2 = chatObj[k].attributes[0].nodeValue; //id
+            pcs2 = chatObj[k].attributes[0].nodeValue;
             for (ii = 0; ii < zb.length; ii++) {
                 if (zb[ii].attributes[0].nodeValue == pcs2) {
                     pcs3 = zb[ii].getElementsByTagName("title")[0].childNodes[0].nodeValue;
                     d23 += pcs3 + ": ";
                     pcs3 = chatObj[k].childNodes[0].nodeValue;
                     d23 += "<b>" + pcs3 + "</b><br /><br />";
-
-                    //code for order total
                     if (pcs2 == myOrderID) {
                         pcs3x = pcs3.toLowerCase();
                         pcs3x = pcs3x.replace("$", "");
@@ -883,7 +896,7 @@ function myProcess(i, zb, x) {
                         } else {
                             subtotal = 0;
                         }
-                        // code for agent totals
+                        /* code for agent totals*/
                         var agentExists = false;
                         var agentName = x[i].getElementsByTagName("Rep")[0].attributes.getNamedItem("repName").nodeValue;
                         if (subtotal != 0) {
@@ -896,7 +909,7 @@ function myProcess(i, zb, x) {
                                 }
                             }
                             if (agentExists == false) {
-                                //code for indidvidual agents
+                                /*code for indidvidual agents*/
                                 var agent = {
                                     name: agentName,
                                     total: subtotal,
@@ -911,7 +924,7 @@ function myProcess(i, zb, x) {
             }
         }
     }
-    //get skill group
+    /*get skill group*/
     chatObj = x[i].getElementsByTagName("varValue");
     pcs3 = "null";
     for (k = 0; k < chatObj.length; k++) {
@@ -926,7 +939,7 @@ function myProcess(i, zb, x) {
         d25 = pcs3;
     }
 
-    //add data to table
+    /*add data to table*/
     var t = $('#example').DataTable();
     t.row.add([
                       null, null, d1, d2, d3, d25, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16, d17, d18, d19, d20, d21, d22, d23, d24, d4
@@ -953,7 +966,7 @@ function changeModal(d) {
     document.getElementById("sk").innerHTML = "<b>Skill Group: </b>" + d[5];
     document.getElementById("ag").innerHTML = "<b>Operator: </b>" + d[6];
     document.getElementById("sess").innerHTML = "<b>Session ID: </b>" + d[9];
-    //chat transcript
+    /*chat transcript*/
     if (d[17] !== "") {
         document.getElementById("otherTables").innerHTML += '<table border=1 class="tableModal">' +
             '<tr>' +
@@ -964,7 +977,7 @@ function changeModal(d) {
             '</tr>' +
             '</table><br />';
     }
-    //pre chat survey
+    /*pre chat survey*/
     if (d[18] !== "") {
         document.getElementById("otherTables").innerHTML += '<table border=1 class="tableModal">' +
             '<tr>' +
@@ -975,7 +988,7 @@ function changeModal(d) {
             '</tr>' +
             '</table><br />';
     }
-    //post chat survey
+    /*post chat survey*/
     if (d[19] !== "") {
         document.getElementById("otherTables").innerHTML += '<table border=1 class="tableModal">' +
             '<tr>' +
@@ -986,7 +999,7 @@ function changeModal(d) {
             '</tr>' +
             '</table><br />';
     }
-    //Operator survey
+    /*Operator survey*/
     if (d[24] !== "") {
         document.getElementById("otherTables").innerHTML += '<table border=1 class="tableModal">' +
             '<tr>' +
@@ -997,7 +1010,7 @@ function changeModal(d) {
             '</tr>' +
             '</table><br />';
     }
-    //Offline survey
+    /*Offline survey*/
     if (d[20] !== "") {
         document.getElementById("otherTables").innerHTML += '<table border=1 class="tableModal">' +
             '<tr>' +
@@ -1008,7 +1021,7 @@ function changeModal(d) {
             '</tr>' +
             '</table><br />';
     }
-    //General chat info
+    /*General chat info*/
     document.getElementById("otherTables").innerHTML += '<table class="tableModal" cellpadding="5" cellspacing="0" border="1" style="padding-left:50px;">' +
         '<tr>' +
         '<th colspan="2" style="text-align: center"><b>General Chat Info</b></th>' +
@@ -1132,7 +1145,6 @@ function changeOpacity() {
     heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
 }
 
-// Heatmap data: 500 Points
 function getPoints() {
     return [];
 }

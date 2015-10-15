@@ -15,7 +15,7 @@ Note - This tool is still under development. As you are using the tool if anythi
 6. You can search the transcripts by using the built in search bar. 
 
 ##Updates
-Master - Added the ability to export to Excel, and to copy the contents of the table. Added a field to choose your own custom CSAT question by using the ID. Added a cookie to save the ID of the CSAT question, and a tooltip for the CSAT Question ID.
+Master - Updated the interface to now have a button for chooseing which columns are visibile. The button makes it easier to distinguish which columns are visible/not visible. Added a disclaimer about the tool.
 
 Version 1.0 - Initial Release
 
@@ -35,3 +35,7 @@ Version 1.5 - Added local storage to save the Order Total Variable
             - Fixed issue where map would not always load properly
             - Fixed an issue where revenue would not populate
             - Added tool tips to the tool
+            
+Version 1.6 - Added the ability to export to Excel and copy contents of the table
+            - Added a field to choose your own custom CSAT Question by using its ID
+            - Added a cookie to save the ID of the CSAT Question and a tooltip for the CSAT Question ID
