@@ -27,7 +27,7 @@ Here is how to format the cells:
 5. Click Replace All
 
 ##Updates
-Master - Removed the animation for the graphs to improve load time. Updated the default Excel export name to now be the current date. Added the ability to format the chat transcripts and the surveys in Excel.
+Master - Fixed issue where the show entries button the table was not appearing.
 
 * Version 1.0 
  * Initial Release
@@ -56,3 +56,7 @@ Master - Removed the animation for the graphs to improve load time. Updated the 
  * Updated the interface to now have a button for choosing which columns are visible
  * The drop down for the column visibility makes it easier to see which columns are visibile/not visible
  * Added disclaimer to the tool
+* Version 1.8
+ * Removed the animation for the graphs to improve the load time
+ * Updated the default Excel export name to now be the current date
+ * Added the ability to format the chat transcripts and the surveys in Excel

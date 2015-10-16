@@ -153,7 +153,7 @@ $(document).ready(function () {
     });
 
     var table = $('#example').DataTable({
-        dom: 'Bfrtip',
+        dom: 'lBfrtip',
         buttons: [
             'copyHtml5',
             {
