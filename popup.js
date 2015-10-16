@@ -30,7 +30,8 @@ var agents = [];
 var agentList = [];
 /*variable for custom CSAT question*/
 var csatID = "";
-
+/*todays date*/
+var todayDate = getTodayDate();
 loadingPannel = loadingPannel || (function () {
     var lpDialog = $("" +
         "<div class='modal' id='lpDialog' data-backdrop='static' data-keyboard='false'>" +
@@ -155,9 +156,12 @@ $(document).ready(function () {
         dom: 'Bfrtip',
         buttons: [
             'copyHtml5',
-                'excelHtml5', {
+            {
+                extend: 'excelHtml5',
+                title: todayDate
+        }, {
                 extend: 'colvis',
-                columns: [2,3,4,5,6,9,21,22,23,25]
+                columns: [2, 3, 4, 5, 6, 9, 21, 22, 23, 25]
             }
             /*,
                             'csvHtml5'
@@ -268,7 +272,8 @@ $(document).ready(function () {
                 }];
         var ctx4 = document.getElementById("invest-chart4").getContext("2d");
         var csatPie = new Chart(ctx4).Pie(pieData, {
-            responsive: true
+            responsive: true,
+            animation: false
         });
 
         /*chart data for CSAT*/
@@ -285,7 +290,8 @@ $(document).ready(function () {
         };
         var ctx3 = $("#invest-chart3").get(0).getContext("2d");
         var invest_chart3 = new Chart(ctx3).Bar(data, {
-            responsive: true
+            responsive: true,
+            animation: false
         });
         csat.sort();
         for (k = 0; k < csat.length; k++) {
@@ -353,7 +359,8 @@ $(document).ready(function () {
         };
         var ctx1 = $("#invest-chart").get(0).getContext("2d");
         var invest_chart = new Chart(ctx1).Bar(data, {
-            responsive: true
+            responsive: true,
+            animation: false
         });
 
         /*chart data for agent*/
@@ -370,7 +377,8 @@ $(document).ready(function () {
         };
         var ctx2 = $("#invest-chart2").get(0).getContext("2d");
         var invest_chart2 = new Chart(ctx2).Bar(data2, {
-            responsive: true
+            responsive: true,
+            animation: false
         });
 
         /*chart data for agent avg response time*/
@@ -399,7 +407,8 @@ $(document).ready(function () {
         };
         var ctx21 = $("#invest-chart5").get(0).getContext("2d");
         var invest_chart21 = new Chart(ctx21).Bar(data21, {
-            responsive: true
+            responsive: true,
+            animation: false
         });
 
         /*visitor response graph*/
@@ -734,8 +743,8 @@ function myProcess(i, zb, x) {
                 d16 += "<font color='red'>" + txt + ': ' + title + "</font><br /><br />";
             }
         }
+        d16 += "<div style='display: none;'>#NEL#Test#</div>";
     }
-
     /*calculate average chat time for the chats*/
     var agentResponse = 0;
     for (var ii = 0; ii < temObj3.length; ii++) {
@@ -801,6 +810,7 @@ function myProcess(i, zb, x) {
                     d17 += pcs3 + ": ";
                     pcs3 = chatObj[k].childNodes[0].nodeValue;
                     d17 += "<b>" + pcs3 + "</b><br /><br />";
+                    d17 += "<div style='display: none;'>#NEL#Test#</div>";
                 }
             }
         }
@@ -821,6 +831,7 @@ function myProcess(i, zb, x) {
                     d18 += pcs3 + ": ";
                     pcs3 = chatObj[k].childNodes[0].nodeValue;
                     d18 += "<b>" + pcs3 + "</b><br /><br />";
+                    d18 += "<div style='display: none;'>#NEL#Test#</div>";
                 }
             }
             csatID = document.getElementById("CSATIDVar").value;
@@ -861,6 +872,7 @@ function myProcess(i, zb, x) {
                     d19 += pcs3 + ": ";
                     pcs3 = chatObj[k].childNodes[0].nodeValue;
                     d19 += "<b>" + pcs3 + "</b><br /><br />";
+                    d19 += "<div style='display: none;'>#NEL#Test#</div>";
                 }
             }
         }
@@ -920,7 +932,9 @@ function myProcess(i, zb, x) {
                             }
                         }
                     }
+                    d23 += "<div style='display: none;'>#NEL#Test#</div>";
                 }
+
             }
         }
     }
@@ -1183,4 +1197,19 @@ function checkCookie() {
     } else {
         console.log("Sorry, your browser does not support Web Storage...");
     }
+}
+
+function getTodayDate() {
+    var todayDate = new Date();
+    var dd = todayDate.getDate();
+    var mm = todayDate.getMonth() + 1; //January is 0!
+    var yyyy = todayDate.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+    todayDate = mm + '-' + dd + '-' + yyyy;
+    return todayDate;
 }

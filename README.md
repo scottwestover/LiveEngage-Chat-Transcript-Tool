@@ -14,8 +14,19 @@ Note - This tool is still under development. As you are using the tool if anythi
 5. You can then click on the green plus icon to expand the row to show more data.
 6. You can search the transcripts by using the built in search bar. 
 
+##Format Chat Transcript and Surveys In Excel
+
+When the table is exported to Excel, I added in custom code that can be used to format the cells for the Chat transcript and the Surveys so all of the text is not on one line. If you do not format the code, in these cells you will see the following text '#NEL#Test#'.
+
+Here is how to format the cells:
+1. Hit Ctrl + F to open the Find & Replace dialog
+2. Click on the Replace tab
+3. In the Find what: field add #NEL#Test#
+4. In the Replace with: field, press Ctrl + J, nothing will show in the field
+5. Click Replace All
+
 ##Updates
-Master - Updated the interface to now have a button for chooseing which columns are visibile. The button makes it easier to distinguish which columns are visible/not visible. Added a disclaimer about the tool.
+Master - Removed the animation for the graphs to improve load time. Updated the default Excel export name to now be the current date. Added the ability to format the chat transcripts and the surveys in Excel.
 
 * Version 1.0 
  * Initial Release
@@ -40,3 +51,7 @@ Master - Updated the interface to now have a button for chooseing which columns 
  * Added the ability to export to Excel and copy contents of the table
  * Added a field to choose your own custom CSAT Question by using its ID
  * Added a cookie to save the ID of the CSAT Question and a tooltip for the CSAT Question ID
+* Version 1.7
+ * Updated the interface to now have a button for choosing which columns are visible
+ * The drop down for the column visibility makes it easier to see which columns are visibile/not visible
+ * Added disclaimer to the tool
