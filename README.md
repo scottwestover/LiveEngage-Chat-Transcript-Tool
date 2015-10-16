@@ -19,6 +19,7 @@ Note - This tool is still under development. As you are using the tool if anythi
 When the table is exported to Excel, I added in custom code that can be used to format the cells for the Chat transcript and the Surveys so all of the text is not on one line. If you do not format the code, in these cells you will see the following text '#NEL#Test#'.
 
 Here is how to format the cells:
+
 1. Hit Ctrl + F to open the Find & Replace dialog
 2. Click on the Replace tab
 3. In the Find what: field add #NEL#Test#
