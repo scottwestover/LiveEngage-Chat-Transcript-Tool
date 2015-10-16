@@ -56,3 +56,6 @@ Master - Removed the animation for the graphs to improve load time. Updated the 
  * Updated the interface to now have a button for choosing which columns are visible
  * The drop down for the column visibility makes it easier to see which columns are visibile/not visible
  * Added disclaimer to the tool
+
+##Disclaimer
+This tool is created to help you parse and read the transcripts that are provided by LivePerson. This is not a product that is supported by LivePerson.  This type of tool can be used as an example for your developers to create your own custom reporting
