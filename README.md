@@ -27,7 +27,7 @@ Here is how to format the cells:
 5. Click Replace All
 
 ##Updates
-Master - Fixed issue where the show entries button the table was not appearing.
+Master - Updated error handling code.
 
 * Version 1.0 
  * Initial Release
@@ -60,6 +60,8 @@ Master - Fixed issue where the show entries button the table was not appearing.
  * Removed the animation for the graphs to improve the load time
  * Updated the default Excel export name to now be the current date
  * Added the ability to format the chat transcripts and the surveys in Excel
+* Version 1.9
+ * Fixed issue where the show entries button on the table was not appearing
 
 ##Disclaimer
 This tool is created to help you parse and read the transcripts that are provided by LivePerson. This is not a product that is supported by LivePerson.  This type of tool can be used as an example for your developers to create your own custom reporting
