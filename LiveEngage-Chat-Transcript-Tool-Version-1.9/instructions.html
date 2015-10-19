@@ -1,0 +1,82 @@
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Chat XML Widget Instructions</title>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+    <!-- jQuery -->
+    <script type="text/javascript" charset="utf8" src="js/jquery-1.10.2.min.js"></script>
+    <!-- DataTables -->
+    <script type="text/javascript" charset="utf8" src="js/jquery.dataTables.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="css/dashboard.css" rel="stylesheet">
+    <!-- Widget CSS -->
+    <link rel="stylesheet" href="css/widget.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">XML Chat Transcript Widget Instructions</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+                    <li><a href="pages/export.html">Export Chat Transcripts</a></li>
+                    <li><a href="pages/variable.html">Order Total Variable</a></li>
+                    <li><a href="pages/feedback.html">Feedback & Suggestions</a></li>
+                </ul>
+                <ul class="nav nav-sidebar">
+                    <li><a href="popup.html">Back To XML Tool <span class="sr-only">(current)</span></a></li>
+                </ul>
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <h1 class="page-header">Overview</h1>
+
+                <div>
+                    <h3><b>Chat Transcripts</b></h3>The chat transcripts tab will allow you to review each chat transcript and veiw all of the meta data tied to that chat.
+                    <br>
+                    <br>
+                    <ol>
+                        <li>Toggle the columns in the table to make them visible/hide them</li>
+                        <li>Seach each survey individually. The table will update to only have chats with that information</li>
+                        <li>Seach all chat transcripts. The table will update to only have chats with that information</li>
+                        <li>Print the individual chat with all of the meta data tied to it</li>
+                        <li>Click on a row to expand/detract it. The expanded row will show the chat transcript, survey information, and the rest of the meta data.</li>
+                    </ol><img src="images/ChatTab.png" /></div>
+                <div>
+                    <h3><b>Visitor/Agent Response Time</b></h3>The Visitor/Agent Response time tab will allow you to see your visitor's average response time, your agents average response time, and the individual average response time for each agent.<img src="images/report1.png" /></div>
+                <div>
+                    <h3><b>CSAT Reporting</b></h3>The CSAT Reporting tab will allow you to see the total number of responses you recieved for each rating on the CSAT question.
+                    <br>
+                    <br> <b>Note:</b> For this report to load, you must be using the CSAT type question in LiveEngage, and the ID of the question must be "chat_customer_satisfaction_1".<img src="images/report2.png" /></div>
+                <div>
+                    <h3><b>Revenue Reporting</b></h3>The Revenue Reporting tab will allow you to see the total revenue that your agents entered into the agent survey. The report will show each agents total number of entered conversions, the total revenue amount, and the average order value.
+                    <br>
+                    <br><b>Note:</b> For this report to load, you must enter Order Total Variable into the input field before you load the chat transcripts XML file.<img src="images/reporting3.png" /></div>
+                <div>
+                    <h3><b>Map</b></h3></div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
