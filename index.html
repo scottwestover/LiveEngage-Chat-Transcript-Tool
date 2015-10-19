@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Chat XML Widget</title>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+    <!-- jQuery -->
+    <script type="text/javascript" charset="utf8" src="js/jquery-1.10.2.min.js"></script>
+    <!-- DataTables JS File-->
+    <script type="text/javascript" charset="utf8" src="js/jquery.dataTables.js"></script>
+    <!-- XML JS File -->
+    <script type="text/javascript" charset="utf8" src="parse.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Widget CSS -->
+    <link rel="stylesheet" href="css/widget.css">
+    <!-- Main Page CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <!-- Chat JS -->
+    <script type="text/javascript" charset="utf8" src="js/Chart.min.js"></script>
+    <!-- Google Maps API Call-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALBx_wtoG6h43I124sbf9Tj3MuLgA7u38&libraries=visualization"></script>
+    <!-- Code for custom buttons used in datatables -->
+    <link rel="stylesheet" href="css/buttons.dataTables.min.css">
+    <script type="text/javascript" charset="utf8" src="js/buttons.html5.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="js/jszip.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="js/pdfmake.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="js/vfs_fonts.js"></script>
+    <script type="text/javascript" charset="utf8" src="js/buttons.print.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="js/buttons.colVis.min.js"></script>
+    <!-- Code for the timezone converter 
+    <script type="text/javascript" charset="utf8" src="js/moment-timezone.js"></script>-->
+    <!-- Google map scripts -->
+    <script src="js/map.js"></script>
+    <!-- Cookie script -->
+    <script src="js/cookie.js"></script>
+    <!-- Date script -->
+    <script src="js/date.js"></script>
+    <!-- variables that are used -->
+    <script src="js/variables.js"></script>
+    <!-- code used for the file input for the xml file -->
+    <script src="js/loadfile.js"></script>
+    <!-- functions called in other scripts -->
+    <script src="js/functions.js"></script>
+    <!-- contains document ready function that initializes the page -->
+    <script src="js/documentReady.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div>
+            <form class="form-horizontal well2">
+                <legend>
+                    <h4>
+          <div>XML Chat Transcript Widget<br>
+              <h6>This tool is created to help you parse and read the transcripts that are provided by LivePerson. This is not a product that is supported by LivePerson.  This type of tool can be used as an example for your developers to create your own custom reporting</h6></div>
+        </h4>
+                </legend>
+                <fieldset>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label for="xmlFileinput"> <strong>XML File:</strong></label>
+                                        <input type="file" id="xmlFileinput" accept=".xml">
+                                    </td>
+                                    <td>
+                                        <label for="orderIDVar"> <strong>Order Total Variable:</strong></label>
+                                        <input type="text" id="orderIDVar">
+                                    </td>
+                                    <td>
+                                        <td>&#160;&#160;<span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" title="Input the Order Total Variable ID from your chat transcripts to see your revenue report. This information will be saved in a cookie so you will not have to type it in each time." data-placement="bottom"></span></td>
+                                        <td>&#160;&#160;&#160;&#160;
+                                            <label for="CSATIDVar"> <strong>CSAT Question Variable:</strong></label>
+                                            <input type="text" id="CSATIDVar" value="chat_customer_satisfaction_1">
+                                        </td>
+                                        <td>
+                                            <td>&#160;&#160;<span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" title="Input the CSAT Question ID from your chat transcripts to see your CSAT Reprt. This information will be saved in a cookie so you will not have to type it in each time. If you use the default CSAT routing type, this ID is usally chat_customer_satisfaction_1." data-placement="bottom"></span></td>
+                                </tr>
+                            </table>
+                        </div>
+                        &#160;&#160;How to use the XML tool: <a href="instructions.html">Click Here</a>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Chat Transcript</h4>
+                </div>
+                <div id="divtoprint" class="modal-body">
+                    <table border=1 class="tableModal">
+                        <tr>
+                            <td class="padd">
+                                <div id="st"></div>
+                            </td>
+                            <td class="padd">
+                                <div id="et"></div>
+                            </td>
+                            <td class="padd">
+                                <div id="dur"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="padd">
+                                <div id="sk"></div>
+                            </td>
+                            <td class="padd">
+                                <div id="ag"></div>
+                            </td>
+                            <td class="padd">
+                                <div id="sess"></div>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <div id="otherTables"></div>
+                </div>
+                <div class="modal-footer">
+                    <button id='pntbtn' class='btn btn-default'>Print</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- panel for transcript table -->
+    <div role="tabpanel" id="too">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Chat Transcripts</a></li>
+            <li role="presentation"><a id="t2" href="#chart" aria-controls="chart" role="tab" data-toggle="tab">Visitor/Agent Response Time Reporting</a></li>
+            <li role="presentation"><a id="t3" href="#chart2" aria-controls="chart2" role="tab" data-toggle="tab">CSAT Reporting</a></li>
+            <li role="presentation"><a id="t4" href="#chart3" aria-controls="chart3" role="tab" data-toggle="tab">Revenue Reporting</a></li>
+            <li role="presentation"><a id="t5" href="#chart4" aria-controls="chart4" role="tab" data-toggle="tab">Map</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content" id="too2">
+            <div role="tabpanel" class="tab-pane active" id="home">
+                <!-- <div>
+                        <br>
+                        <b>&#160;Toggle Main Columns: </b><a class="toggle-vis" data-column="2">Chat Start Time</a> - <a class="toggle-vis" data-column="3">Chat End Time</a> - <a class="toggle-vis" data-column="4">Duration</a> - <a class="toggle-vis" data-column="5">Skill Group</a> - <a class="toggle-vis" data-column="6">Operator</a> - <a class="toggle-vis" data-column="9">Session ID</a> - <a class="toggle-vis" data-column="21">Pre Chat</a> - <a class="toggle-vis" data-column="22">Post Chat</a> - <a class="toggle-vis" data-column="23">Offline</a> - <a class="toggle-vis" data-column="25">Operator</a>&#160;&#160;<span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" title="Click to show/hide these columns in the table below" data-placement="bottom"></span>
+                    </div>
+                    <br />-->
+                <!-- Search Survey -->
+                <div id="surveySearch" class="panel panel-default">
+                    <div class="panel-body">
+                        <table>
+                            <tr>
+                                <td>
+                                    <label for="col18_filter"> <strong>Search Prechat Survey:</strong></label>
+                                    <input type="text" class="column_filter" id="col18_filter" data-column="18" placeholder="Search Prechat Survey">&#160;
+                                </td>
+                                <td>
+                                    <label for="col19_filter"> <strong> Search Postchat Survey:</strong></label>
+                                    <input type="text" class="column_filter" id="col19_filter" data-column="19" placeholder="Search Postchat Survey">&#160;
+                                </td>
+                                <td>
+                                    <label for="col20_filter"> <strong> Search Offline Survey:</strong></label>
+                                    <input type="text" class="column_filter" id="col20_filter" data-column="20" placeholder="Search Offline Survey">&#160;
+                                </td>
+                                <td>
+                                    <label for="col24_filter"> <strong> Search Agent Survey:</strong></label>
+                                    <input type="text" class="column_filter" id="col24_filter" data-column="24" placeholder="Search Agent Survey">
+                                </td>
+                                <td>&#160;&#160;<span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" title="Use these search bars to search only the surveys instead of searching all the meta data" data-placement="bottom"></span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="results">
+                    <table id='example' class='display dataTable cell-border' cellspacing='0' width='100%'>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th>Chat Start Time</th>
+                                <th>Chat End Time</th>
+                                <th>Duration</th>
+                                <th>Skill Group</th>
+                                <th>Operator</th>
+                                <th>Browser</th>
+                                <th>Host IP</th>
+                                <th>Session ID</th>
+                                <th>Country</th>
+                                <th>City</th>
+                                <th>Organization</th>
+                                <th>World Region</th>
+                                <th>Postal Code</th>
+                                <th>Time Zone</th>
+                                <th>ISP</th>
+                                <th>Transcript</th>
+                                <th>Prechat Survey</th>
+                                <th>Post Chat</th>
+                                <th>Offline Survey</th>
+                                <th>Pre Chat</th>
+                                <th>Post Chat</th>
+                                <th>Offline</th>
+                                <th>Operator Survey</th>
+                                <th>Operator</th>
+                                <th>Chat Referer</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th class='srcT'>Prechat</th>
+                                <th class='srcT'>Postchat</th>
+                                <th class='srcT'>Offline</th>
+                                <th></th>
+                                <th class='srcT'>Operator</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- panel for Agent/visitor response times -->
+            <div role="tabpanel" class="tab-pane" id="chart">
+                <br>
+                <div id="row">
+                    <div class="col-md-6">
+                        <div>Avg Visitor Response Time - Seconds</div>
+                        <canvas id="invest-chart"></canvas>
+                    </div>
+                    <div class="col-md-6">
+                        <div>Avg Agent Response Time - Seconds</div>
+                        <canvas id="invest-chart2"></canvas>
+                    </div>
+                </div>
+                <br>
+                <div id="row">
+                    <div class="col-md-12">
+                        <div>Avg Response Time Per Agent - Seconds (Grey is average for all agents)</div>
+                        <canvas id="invest-chart5"></canvas>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <!-- panel for Csat -->
+            <div role="tabpanel" class="tab-pane" id="chart2">
+                <br>
+                <div id="row">
+                    <div class="col-md-6">
+                        <div>CSAT</div>
+                        <canvas id="invest-chart3"></canvas>
+                    </div>
+                    <div class="col-md-6">
+                        <div>CSAT</div>
+                        <canvas id="invest-chart4"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- panel for revenue information -->
+            <div role="tabpanel" class="tab-pane" id="chart3">
+                <div id="row">
+                    <!-- For the total -->
+                    <h4><div id="total" style="text-align: center"></div></h4>
+                    <!-- For any error with total-->
+                    <table id='example1' class='display dataTable cell-border' cellspacing='0' width='100%'>
+                        <thead>
+                            <tr>
+                                <th>Agent Name</th>
+                                <th>Agent Entered Conversions</th>
+                                <th>Total Revenue</th>
+                                <th>Average Order Value</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <div id="error"></div>
+                </div>
+            </div>
+            <!-- panel for heatmap -->
+            <div role="tabpanel" class="tab-pane" id="chart4">
+                <div id="floating-panel">
+                    <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+                    <button onclick="changeGradient()">Change gradient</button>
+                    <button onclick="changeRadius()">Change radius</button>
+                    <button onclick="changeOpacity()">Change opacity</button>
+                </div>
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+    </head>
+</body>
+
+</html>

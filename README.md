@@ -27,7 +27,7 @@ Here is how to format the cells:
 5. Click Replace All
 
 ##Updates
-Master - Updated error handling code.
+Master - Cleaned up the code and added comments.
 
 * Version 1.0 
  * Initial Release
@@ -62,6 +62,8 @@ Master - Updated error handling code.
  * Added the ability to format the chat transcripts and the surveys in Excel
 * Version 1.9
  * Fixed issue where the show entries button on the table was not appearing
+* Version 2.0
+ * Updated error handling code
 
 ##Disclaimer
 This tool is created to help you parse and read the transcripts that are provided by LivePerson. This is not a product that is supported by LivePerson.  This type of tool can be used as an example for your developers to create your own custom reporting
