@@ -533,6 +533,7 @@ function splitDate2(date) {
     var subDate = date[1].split("+");
     subDate = subDate[0];
     date = date[0];
+    //console.log("d: " + date + " s: " + subDate);
     var combinedDate = "<b>Date: </b>" + date + " <b>Time: </b>" + subDate + " (UTC)";
     return combinedDate;
 }
@@ -590,70 +591,110 @@ function myProcess(i, zb, x) {
     if (chatObj == undefined) {
         d6 = "";
     } else {
-        d6 = x[i].getElementsByTagName("agent")[0].childNodes[0].nodeValue;
+        if (x[i].getElementsByTagName("agent")[0].childNodes[0] == undefined) {
+            d6 = "";
+        } else {
+            d6 = x[i].getElementsByTagName("agent")[0].childNodes[0].nodeValue;
+        }
     }
     chatObj = x[i].getElementsByTagName("ip")[0];
     if (chatObj == undefined) {
         d7 = "";
     } else {
-        d7 = x[i].getElementsByTagName("ip")[0].childNodes[0].nodeValue;
+        if (x[i].getElementsByTagName("ip")[0].childNodes[0] == undefined) {
+            d7 = ""
+        } else {
+            d7 = x[i].getElementsByTagName("ip")[0].childNodes[0].nodeValue;
+        }
     }
     d8 = x[i].attributes[1].nodeValue;
 
-    chatObj = x[i].getElementsByTagName("geoCountry")[0].childNodes[0];
+    chatObj = x[i].getElementsByTagName("geoCountry")[0];
     if (chatObj == undefined) {
         d9 = "";
     } else {
-        d9 = x[i].getElementsByTagName("geoCountry")[0].childNodes[0].nodeValue;
+        if (x[i].getElementsByTagName("geoCountry")[0].childNodes[0] == undefined) {
+            d9 = "";
+        } else {
+            d9 = x[i].getElementsByTagName("geoCountry")[0].childNodes[0].nodeValue;
+        }
     }
-
-    chatObj = x[i].getElementsByTagName("geoCity")[0].childNodes[0];
+    chatObj = x[i].getElementsByTagName("geoCity")[0];
     if (chatObj == undefined) {
         d10 = "";
     } else {
-        d10 = x[i].getElementsByTagName("geoCity")[0].childNodes[0].nodeValue;
+        if (x[i].getElementsByTagName("geoCity")[0].childNodes[0] == undefined) {
+            d10 = "";
+        } else {
+            d10 = x[i].getElementsByTagName("geoCity")[0].childNodes[0].nodeValue;
+        }
     }
 
-    chatObj = x[i].getElementsByTagName("geoOrg")[0].childNodes[0];
+    chatObj = x[i].getElementsByTagName("geoOrg")[0];
     if (chatObj == undefined) {
         d11 = "";
     } else {
-        d11 = x[i].getElementsByTagName("geoOrg")[0].childNodes[0].nodeValue;
+        if (x[i].getElementsByTagName("geoOrg")[0].childNodes[0] == undefined) {
+            d11 = "";
+        } else {
+            d11 = x[i].getElementsByTagName("geoOrg")[0].childNodes[0].nodeValue;
+        }
     }
 
-    chatObj = x[i].getElementsByTagName("geoReg")[0].childNodes[0];
+    chatObj = x[i].getElementsByTagName("geoReg")[0];
     if (chatObj == undefined) {
         d12 = "";
     } else {
-        d12 = x[i].getElementsByTagName("geoReg")[0].childNodes[0].nodeValue;
+        if (x[i].getElementsByTagName("geoReg")[0].childNodes[0] == undefined) {
+            d12 = "";
+        } else {
+            d12 = x[i].getElementsByTagName("geoReg")[0].childNodes[0].nodeValue;
+        }
     }
 
-    chatObj = x[i].getElementsByTagName("geoPost")[0].childNodes[0];
+    chatObj = x[i].getElementsByTagName("geoPost")[0];
     if (chatObj == undefined) {
         d13 = "";
     } else {
-        d13 = x[i].getElementsByTagName("geoPost")[0].childNodes[0].nodeValue;
+        if (x[i].getElementsByTagName("geoPost")[0].childNodes[0] == undefined) {
+            d13 = "";
+        } else {
+            d13 = x[i].getElementsByTagName("geoPost")[0].childNodes[0].nodeValue;
+        }
     }
 
-    chatObj = x[i].getElementsByTagName("geoTimeZone")[0].childNodes[0];
+    chatObj = x[i].getElementsByTagName("geoTimeZone")[0];
     if (chatObj == undefined) {
         d14 = "";
     } else {
-        d14 = x[i].getElementsByTagName("geoTimeZone")[0].childNodes[0].nodeValue;
+        if (x[i].getElementsByTagName("geoTimeZone")[0].childNodes[0] == undefined) {
+            d14 = "";
+        } else {
+            d14 = x[i].getElementsByTagName("geoTimeZone")[0].childNodes[0].nodeValue;
+        }
     }
 
-    chatObj = x[i].getElementsByTagName("geoISP")[0].childNodes[0];
+    chatObj = x[i].getElementsByTagName("geoISP")[0];
     if (chatObj == undefined) {
         d15 = "";
     } else {
-        d15 = x[i].getElementsByTagName("geoISP")[0].childNodes[0].nodeValue;
+        if (x[i].getElementsByTagName("geoISP")[0].childNodes[0] == undefined) {
+            d15 = "";
+        } else {
+            d15 = x[i].getElementsByTagName("geoISP")[0].childNodes[0].nodeValue;
+        }
     }
 
-    var long = x[i].getElementsByTagName("geoLong")[0].childNodes[0].nodeValue;
-    var lat = x[i].getElementsByTagName("geoLat")[0].childNodes[0].nodeValue;
-    lat = parseFloat(lat);
-    long = parseFloat(long);
-    addPoints(lat, long);
+    var long = x[i].getElementsByTagName("geoLong")[0];
+    if (long == undefined) {} else {
+        if (x[i].getElementsByTagName("geoLong")[0].childNodes[0].nodeValue == undefined) {} else {
+            long = x[i].getElementsByTagName("geoLong")[0].childNodes[0].nodeValue;
+            var lat = x[i].getElementsByTagName("geoLat")[0].childNodes[0].nodeValue;
+            lat = parseFloat(lat);
+            long = parseFloat(long);
+            addPoints(lat, long);
+        }
+    }
 
     /*chat transcript*/
     var y = x[i].getElementsByTagName("line");
