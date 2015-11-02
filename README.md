@@ -29,7 +29,7 @@ Here is how to format the cells:
 5. Click Replace All
 
 ##Updates
-Master - Cleaned up the code and added comments. Added in option to choose which reports you want generated. Added new tab for custom reports that will allow you to choose the questions from your surveys and get statistics on them. Fixed issue where pie chart was moving when you hover over it. Added in CSAT by agent.
+Master - Updated Instructions to include how to format data in Excel when you export the table.
 
 * Version 1.0 
  * Initial Release
@@ -66,6 +66,12 @@ Master - Cleaned up the code and added comments. Added in option to choose which
  * Fixed issue where the show entries button on the table was not appearing
 * Version 2.0
  * Updated error handling code
+* Version 2.1
+ * Cleaned up the code and added comments
+ * Added in option to choose which reports you want generated
+ * Added new tab for custom reports that will allow you to choose the questions from your surveys and get statistics on them
+ * Added in CSAT by agent
+ * Fixed issue where pie chart was moving when you hover over it
 
 ##Disclaimer
 This tool is created to help you parse and read the transcripts that are provided by LivePerson. This is not a product that is supported by LivePerson.  This type of tool can be used as an example for your developers to create your own custom reporting
