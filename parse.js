@@ -329,12 +329,48 @@ function myProcess(i, zb, x) {
                     }
                 }
                 if (surveyExists == false) {
-                    /*code for indidvidual agents*/
+                    /*code for indidvidual questions*/
                     var agent = {
                         name: surveyQ,
                         total: 1
                     }
                     csat.push(agent);
+                }
+                /*code for each agent*/
+                var agentCsatExists = false;
+                for (var w = 0; w < csatAgentList.length; w++) {
+                    var agentCsat = csatAgentList[w];
+                    if (agentCsat.name == chatObj[k].parentNode.parentNode.getElementsByTagName("Rep")[0].attributes.getNamedItem("repName").nodeValue) {
+                        for (var ww = 0; ww < agentCsat.questions.length; ww++) {
+                            var agentCQuestion = agentCsat.questions[ww];
+                            if (agentCQuestion.name == surveyQ) {
+                                agentCsatExists = true;
+                                agentCsat.questions[ww].total += 1;
+                                break;
+                            }
+                        }
+                        if (agentCsatExists == false) {
+                            agentCsatExists = true;
+                            var question = {
+                                name: surveyQ,
+                                total: 1
+                            }
+                            agentCsat.questions.push(question);
+                        }
+                        break;
+                    }
+                }
+                if (agentCsatExists == false) {
+                    var agent = {
+                        name: chatObj[k].parentNode.parentNode.getElementsByTagName("Rep")[0].attributes.getNamedItem("repName").nodeValue,
+                        questions: []
+                    }
+                    var question = {
+                        name: surveyQ,
+                        total: 1
+                    }
+                    agent.questions.push(question);
+                    csatAgentList.push(agent);
                 }
             }
         }
@@ -382,7 +418,6 @@ function myProcess(i, zb, x) {
                         if (pcs3x.indexOf("n") == -1) {
                             subtotal = parseFloat(pcs3x);
                             if (isNaN(subtotal) == true) {
-                                console.log(x[i]);
                                 divText2 += pcs3x + "<br />"
                                 subtotal = 0;
                             } else {
@@ -441,4 +476,19 @@ function myProcess(i, zb, x) {
     t.row.add([
                       null, null, d1, d2, d3, d25, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16, d17, d18, d19, d20, d21, d22, d23, d24, d4
                   ]);
+}
+
+/*update the csat by agent div*/
+function generateCSAT() {
+    var reportDiv = "";
+    for (var xx = 0; xx < csatAgentList.length; xx++) {
+        reportDiv = "<div class='row'><div class='col-md-12'><b><h4>" + csatAgentList[xx].name + " - CSAT Report</h4></b><table id='example" + xx + "C2' class='display dataTable cell-border' cellspacing='0' width='100%'><thead><tr><th>Answer</th><th>Answer Total</th></tr></thead><tfoot><tr><th></th><th></th></tr></tfoot><tbody></tbody></table></div></div>";
+        $("#agentCsat").append(reportDiv);
+        var tableName = "#example" + xx + "C2";
+        //console.log(tableName);
+        var oTable = $(tableName).DataTable();
+        for (var m = 0; m < csatAgentList[xx].questions.length; m++) {
+            oTable.row.add([csatAgentList[xx].questions[m].name, csatAgentList[xx].questions[m].total]).draw();
+        }
+    }
 }

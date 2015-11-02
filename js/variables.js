@@ -60,3 +60,5 @@ loadingPannel = loadingPannel || (function () {
 
     };
 })();
+/*variable for list of agents and their csat scores*/
+var csatAgentList = [];

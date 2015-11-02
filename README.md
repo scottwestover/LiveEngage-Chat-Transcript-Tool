@@ -8,11 +8,13 @@ You can view a live example of the tool here: http://scottwestover.github.io/
 Note - This tool is still under development. As you are using the tool if anything unexpected happens, please fill out the feedback form that is linked on the popup page. This will help me fix any bugs or unexpected issues that occur and make this tool better.
 
 1. You will need to export your chat transcript data from your LiveEngage Account as an XML file.
-2. Open up the extension in Chrome by clicking on the icon, or by opening the popup.html file by double clicking on it if you are running it locally.
-3. Once the page loads in your browser, click on the "Choose File" button to load your XML file. 
-4. Your chats should then populate into the table.
-5. You can then click on the green plus icon to expand the row to show more data.
-6. You can search the transcripts by using the built in search bar. 
+2. Open up the webpage in Chrome, or by opening the index.html file by double clicking on it if you are running it locally.
+3. Once the page loads in your browser, choose which reports you would like to generate.
+4. Once you complete this, click on the "Choose File" button to load your XML file. 
+5. Your chats should then populate into the table.
+6. You can then click on the green plus icon to expand the row to show more data.
+7. You can search the transcripts by using the built in search bar. 
+8. You can switch between the reports by clicking on the different tabs. 
 
 ##Format Chat Transcript and Surveys In Excel
 
@@ -27,7 +29,7 @@ Here is how to format the cells:
 5. Click Replace All
 
 ##Updates
-Master - Cleaned up the code and added comments.
+Master - Cleaned up the code and added comments. Added in option to choose which reports you want generated. Added new tab for custom reports that will allow you to choose the questions from your surveys and get statistics on them. Fixed issue where pie chart was moving when you hover over it. Added in CSAT by agent.
 
 * Version 1.0 
  * Initial Release

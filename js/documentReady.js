@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    /*hide variable input boxes*/
+    $("#var1").hide();
     /*enables the tooltip feature*/
     $('[data-toggle="tooltip"]').tooltip();
     /*initializes the google map*/
@@ -6,10 +8,14 @@ $(document).ready(function () {
     /*checks to see if the cookies exist for the custom variables*/
     checkCookie();
     /*hides the tabs until we are done processing the transcript*/
+    $('#t1').hide();
+    $('#too2').hide();
+    $('#too').hide();
     $('#t2').hide();
     $('#t3').hide();
     $('#t4').hide();
     $('#t5').hide();
+    $('#t6').hide();
     /*checks if a new file was loaded*/
     $("#xmlFileinput").change(function () {
         handleFiles(this.files);
@@ -28,7 +34,7 @@ $(document).ready(function () {
                 title: todayDate
         }, {
                 extend: 'colvis',
-                columns: [2, 3, 4, 5, 6, 9, 21, 22, 23, 25]
+                columns: [2, 3, 4, 5, 6, 9, 10, 11, 12, 13, 21, 22, 23, 25]
             }
             /*,
                             'csvHtml5'
@@ -128,12 +134,7 @@ $(document).ready(function () {
     /*code for the charts on CSAT tab*/
     $('a[href=#chart2]').on('shown.bs.tab', function () {
         /*chart for pie chart*/
-        var pieData = [{
-            value: 300,
-            color: "#F7464A",
-            highlight: "#FF5A5E",
-            label: "Red"
-                }];
+        var pieData = [{}];
         var ctx4 = document.getElementById("invest-chart4").getContext("2d");
         var csatPie = new Chart(ctx4).Pie(pieData, {
             responsive: true,
@@ -157,6 +158,7 @@ $(document).ready(function () {
             animation: false
         });
         csat.sort();
+        csatPie.removeData(0);
         for (k = 0; k < csat.length; k++) {
             invest_chart3.addData([csat[k].total], csat[k].name);
             var myTotal = parseInt(csat[k].total);
@@ -203,7 +205,6 @@ $(document).ready(function () {
                     break;
             }
         }
-        csatPie.removeData(0);
     });
     /*updates the charts on the response time tab*/
     $('a[href=#chart]').on('shown.bs.tab', function () {
@@ -309,5 +310,37 @@ $(document).ready(function () {
     /*updates the map on the map tab*/
     $('a[href=#chart4]').on('shown.bs.tab', function () {
         google.maps.event.trigger(map, "resize");
+    });
+    /*code for checkbox choices*/
+    $("#rCheck").change(function () {
+        if (this.checked) {
+            $("#var1").show();
+        } else {
+            $("#var1").hide();
+        }
+    }).change();
+    $("#cCheck").change(function () {
+        if (this.checked) {
+            $("#var2").show();
+        } else {
+            $("#var2").hide();
+        }
+    }).change();
+    /*code for custom report table*/
+    $('#example10 tbody').on('click', 'tr', function () {
+        $(this).toggleClass('selected');
+    });
+    /*Generate the custom reports*/
+    $("#ch1").click(function () {
+        $("#choice111").hide();
+        $("#choiceR1").show();
+        var lis = [];
+        var lis2 = [];
+        $('#example10').DataTable().rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
+            var data = this.data();
+            lis.push(data[0]);
+            lis2.push(data[1]);
+        });
+        generateReports(lis, lis2);
     });
 });
