@@ -82,6 +82,9 @@
                             <label>
                                 <input type="checkbox" value="" id="CusCheck" checked="checked"> Custom Reports
                             </label>
+                            <label>
+                                <input type="checkbox" value="" id="disCheck" checked="checked"> Disconnect By Report
+                            </label>
                             <br>
                             <br>
                             <div id="1stChoiceVars">
@@ -99,6 +102,14 @@
                                             <span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" title="Input the CSAT Question ID from your chat transcripts to see your CSAT Reprt. This information will be saved in a cookie so you will not have to type it in each time. If you use the default CSAT routing type, this ID is usally chat_customer_satisfaction_1." data-placement="bottom"></span></td>
                                     </tr>
                                 </table>
+                            </div>
+                            <div>
+                                <br>Include/Exclude Non-Interactive Chats? <span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" title="If you exclude the non-interactive chats, none of that data will be in the reports. For example, if the chat is non-interactive and the agent fills out the agent survey, or the visitor fills out the post-chat survey, this data will not be in the reports. " data-placement="bottom"></span>
+                                <br>
+                                <br>
+                                <label>
+                                    <input type="checkbox" value="" id="interactiveCheck"> Exlclude Non-Interactive Chats
+                                </label>&#160;
                             </div>
                             <br> Once you have selected your reports, choose your XML file below.
                         </div>
@@ -179,6 +190,7 @@
             <li role="presentation"><a id="t4" href="#chart3" aria-controls="chart3" role="tab" data-toggle="tab">Revenue Reporting</a></li>
             <li role="presentation"><a id="t5" href="#chart4" aria-controls="chart4" role="tab" data-toggle="tab">Map</a></li>
             <li role="presentation"><a id="t6" href="#custom" aria-controls="custom" role="tab" data-toggle="tab">Custom Reports</a></li>
+            <li role="presentation"><a id="t7" href="#disconnect" aria-controls="disconnect" role="tab" data-toggle="tab">Disconnected By Report</a></li>
         </ul>
 
         <!-- Tab panes -->
@@ -246,6 +258,7 @@
                                 <th>Operator Survey</th>
                                 <th>Operator</th>
                                 <th>Chat Referer</th>
+                                <th>Disconnected By</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -277,6 +290,7 @@
                                 <th></th>
                                 <th class='srcT'>Operator</th>
                                 <th></th>
+                                <th class='srcT'></th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -389,6 +403,25 @@
                 <div id="choiceR1">
                     <div id="myreports"></div>
                 </div>
+            </div>
+            <!-- panel for disconnected by reports -->
+            <div role="tabpanel" class="tab-pane" id="disconnect">
+                <table id='disconnectTable' class='display dataTable cell-border' cellspacing='0' width='100%'>
+                    <thead>
+                        <tr>
+                            <th>Disconnected By:</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

@@ -78,7 +78,11 @@ function searchXML(xmlDoc) {
         for (; index < length; index++) {
             var toProcess = xmlElements[index];
             /* Perform xml processing*/
-            myProcess(index, xmlElements2, x);
+            if (document.getElementById("interactiveCheck").checked) {
+                myProcess2(index, xmlElements2, x);
+            } else {
+                myProcess(index, xmlElements2, x);
+            }
             if (index + 1 < length && index % 100 == 0) {
                 setTimeout(process, 0);
             }
@@ -110,10 +114,15 @@ function searchXML(xmlDoc) {
     if (document.getElementById("CusCheck").checked) {
         $('#t6').show();
     }
+    if (document.getElementById("disCheck").checked) {
+        $('#t7').show();
+    }
     /*draws the revenue table on the revenue tab*/
     revenueTable();
     /*update the csat by agent div*/
     generateCSAT();
+    /*draws the disconnect table*/
+    disconnectTable();
 }
 
 function generateReports(x, y) {

@@ -16,6 +16,7 @@ $(document).ready(function () {
     $('#t4').hide();
     $('#t5').hide();
     $('#t6').hide();
+    $('#t7').hide();
     /*checks if a new file was loaded*/
     $("#xmlFileinput").change(function () {
         handleFiles(this.files);
@@ -34,7 +35,7 @@ $(document).ready(function () {
                 title: todayDate
         }, {
                 extend: 'colvis',
-                columns: [2, 3, 4, 5, 6, 9, 10, 11, 12, 13, 21, 22, 23, 25]
+                columns: [2, 3, 4, 5, 6, 9, 10, 11, 12, 13, 21, 22, 23, 25, 26, 27]
             }
             /*,
                             'csvHtml5'

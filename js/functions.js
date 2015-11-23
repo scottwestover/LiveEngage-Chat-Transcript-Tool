@@ -144,6 +144,16 @@ function revenueTable() {
     }
     $('#example1').DataTable().draw();
 }
+/*This information is populated from disconnected by array*/
+function disconnectTable(){
+    var t3 = $('#disconnectTable').DataTable();
+    for (var i = 0; i < disconnectList.length; i++) {
+        t3.row.add([
+                      disconnectList[i].name,disconnectList[i].total
+                  ]);
+    }
+    $('#disconnectTable').DataTable().draw();
+}
 /* Formatting function for row details - modify as you need */
 function format(d) {
     /*`d` is the original data object for the row*/
@@ -207,6 +217,10 @@ function format(d) {
         '<tr>' +
         '<td>Chat Referer:</td>' +
         '<td>' + d[26] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Disconnected By:</td>' +
+        '<td>' + d[27] + '</td>' +
         '</tr>' +
         '</table>';
 }

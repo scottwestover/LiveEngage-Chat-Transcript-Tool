@@ -1,3 +1,5 @@
+/*list of disconnect reasons*/
+var disconnectList = [];
 /*added to keep track of order total*/
 var salesTotal = 0;
 /*var used to update the html tables with transcript data */
@@ -33,6 +35,8 @@ var agents = [];
 var agentList = [];
 /*variable for custom CSAT question*/
 var csatID = "";
+/*variable for interactive chats*/
+var interactive = false;
 /*variable for the loading modal that pops up*/
 loadingPannel = loadingPannel || (function () {
     var lpDialog = $("" +

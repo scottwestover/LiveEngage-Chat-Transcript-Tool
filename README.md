@@ -29,7 +29,7 @@ Here is how to format the cells:
 5. Click Replace All
 
 ##Updates
-Master - Updated Instructions to include how to format data in Excel when you export the table.
+Master - Fixed issue where there was not time displayed for offline surveys. Added in data for disconnect reason to data table. Added a Disconnected By Report. Added in an option to exlclude non-interactive chats from the transcript. These chats will not show in the table, or in the reports.
 
 * Version 1.0 
  * Initial Release
@@ -72,6 +72,10 @@ Master - Updated Instructions to include how to format data in Excel when you ex
  * Added new tab for custom reports that will allow you to choose the questions from your surveys and get statistics on them
  * Added in CSAT by agent
  * Fixed issue where pie chart was moving when you hover over it
+* Version 2.1.1
+ * Updated instructions to include how to format the data in Excel when you export the table.
 
 ##Disclaimer
-This tool is created to help you parse and read the transcripts that are provided by LivePerson. This is not a product that is supported by LivePerson.  This type of tool can be used as an example for your developers to create your own custom reporting
+This tool is created to help you parse and read the transcripts that are provided by LivePerson. This is not a product that is supported by LivePerson.  This type of tool can be used as an example for your developers to create your own custom reporting. 
+
+It is recommended that you use this tool in Chrome.
