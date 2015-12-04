@@ -116,7 +116,7 @@ function changeModal(d) {
         '<td>' + d[21] + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>Chat Referer:</td>' +
+        '<td>Chat Referrer:</td>' +
         '<td>' + d[31] + '</td>' +
         '</tr>' +
         '</table>';
@@ -126,7 +126,7 @@ function changeModal(d) {
 function getOrderID() {
     myOrderID = document.getElementById("orderIDVar").value;
 }
-/*filters the colums based on the selection */
+/*filters the columns based on the selection */
 function filterColumn(i) {
     $('#example').DataTable().column(i).search(
         $('#col' + i + '_filter').val()
@@ -163,7 +163,7 @@ function format(d) {
         '<td><b>Prechat Survey:</b></td>' +
         '<td><b>Postchat Survey:</b></td>' +
         '<td><b>Offline Survey:</b></td>' +
-        '<td><b>Opperator Survey:</b></td>' +
+        '<td><b>Operator Survey:</b></td>' +
         '</tr>' +
         '<tr>' +
         '<td>' + d[22] + '</td>' +
@@ -215,7 +215,7 @@ function format(d) {
         '<td>' + d[21] + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>Chat Referer:</td>' +
+        '<td>Chat Referrer:</td>' +
         '<td>' + d[31] + '</td>' +
         '</tr>' +
         '<tr>' +
