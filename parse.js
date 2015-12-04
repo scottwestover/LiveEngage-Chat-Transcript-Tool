@@ -142,6 +142,9 @@ function myProcess(i, zb, x) {
     var y = x[i].getElementsByTagName("line");
     d16 = "";
 
+    var repResponse = false;
+    var failedFirst = 0;
+    var failedLast = 0;
     var temObj4 = []
     if(y.length != 0) { var startDate = y[0].attributes.getNamedItem("time").nodeValue; }
     for (j = 0; j < y.length; j++) {
@@ -167,6 +170,7 @@ function myProcess(i, zb, x) {
             }
             /* agent response time*/
             if (y[j].attributes.getNamedItem("by").nodeValue != "info" && y[j].hasAttribute("repId") == true) {
+                repResponse = true;
                 if (y[j - 1].attributes.getNamedItem("by").nodeValue == "info" || y[j - 1].hasAttribute("repId") == false) {
                     /*console.log(y[j].attributes);*/
                     var vDate = y[j].attributes.getNamedItem("time").nodeValue;
@@ -175,6 +179,7 @@ function myProcess(i, zb, x) {
                     var sDate = new Date(oDate);
                     var diffDate = eDate - sDate;
                     diffDate = diffDate / 1000;
+                    if(diffDate > 30) { ++failedLast; }
                     var dd = {
                         dd1: diffDate,
                         dd2: i,
@@ -184,6 +189,7 @@ function myProcess(i, zb, x) {
 
                     var diffDate = eDate - new Date(startDate);
                     diffDate = diffDate / 1000;
+                    if(diffDate > 30) { ++failedFirst; }
                     var dd = {
                         dd1: diffDate,
                         dd2: i,
@@ -509,7 +515,7 @@ function myProcess(i, zb, x) {
     /*add data to table*/
     var t = $('#example').DataTable();
     t.row.add([
-                      null, null, d1, d2, d3, responseTimesFirst, responseTimesLast,
+                      null, null, d1, d2, d3, responseTimesFirst, repResponse ? failedFirst : "no response", responseTimesLast, repResponse ? failedLast : "no response",
                       d25, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16, d17, d18, d19, d20, d21, d22, d23, d24, d4, d26
                       ]);
 }
@@ -687,6 +693,9 @@ function myProcess2(i, zb, x) {
         var y = x[i].getElementsByTagName("line");
         d16 = "";
 
+        var repResponse = false;
+        var failedFirst = 0;
+        var failedLast = 0;
         var temObj4 = []
         if(y.length != 0) { var startDate = y[0].attributes.getNamedItem("time").nodeValue; }
         for (j = 0; j < y.length; j++) {
@@ -712,6 +721,7 @@ function myProcess2(i, zb, x) {
                 }
                 /* agent response time*/
                 if (y[j].attributes.getNamedItem("by").nodeValue != "info" && y[j].hasAttribute("repId") == true) {
+                    repResponse = true;
                     if (y[j - 1].attributes.getNamedItem("by").nodeValue == "info" || y[j - 1].hasAttribute("repId") == false) {
                         /*console.log(y[j].attributes);*/
                         var vDate = y[j].attributes.getNamedItem("time").nodeValue;
@@ -720,6 +730,7 @@ function myProcess2(i, zb, x) {
                         var sDate = new Date(oDate);
                         var diffDate = eDate - sDate;
                         diffDate = diffDate / 1000;
+                        if(diffDate > 30) { ++failedLast; }
                         var dd = {
                             dd1: diffDate,
                             dd2: i,
@@ -729,6 +740,7 @@ function myProcess2(i, zb, x) {
 
                         var diffDate = eDate - new Date(startDate);
                         diffDate = diffDate / 1000;
+                        if(diffDate > 30) { ++failedFirst; }
                         var dd = {
                             dd1: diffDate,
                             dd2: i,
@@ -1054,7 +1066,7 @@ function myProcess2(i, zb, x) {
         /*add data to table*/
         var t = $('#example').DataTable();
         t.row.add([
-                      null, null, d1, d2, d3, responseTimesFirst, responseTimesLast,
+                      null, null, d1, d2, d3, responseTimesFirst, repResponse ? failedFirst : "no response", responseTimesLast, repResponse ? failedLast : "no response",
                       d25, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16, d17, d18, d19, d20, d21, d22, d23, d24, d4, d26
                       ]);
     }
