@@ -141,6 +141,9 @@ function myProcess(i, zb, x) {
     /*chat transcript*/
     var y = x[i].getElementsByTagName("line");
     d16 = "";
+
+    var temObj4 = []
+    if(y.length != 0) { var startDate = y[0].attributes.getNamedItem("time").nodeValue; }
     for (j = 0; j < y.length; j++) {
         /*code for calculating response time*/
         if (j != 0) {
@@ -159,11 +162,12 @@ function myProcess(i, zb, x) {
                         dd3: j
                     };
                     temObj.push(dd);
+                    startDate = y[j].attributes.getNamedItem("time").nodeValue;
                 }
             }
             /* agent response time*/
             if (y[j].attributes.getNamedItem("by").nodeValue != "info" && y[j].hasAttribute("repId") == true) {
-                if (y[j - 1].attributes.getNamedItem("by").nodeValue == "info") {
+                if (y[j - 1].attributes.getNamedItem("by").nodeValue == "info" || y[j - 1].hasAttribute("repId") == false) {
                     /*console.log(y[j].attributes);*/
                     var vDate = y[j].attributes.getNamedItem("time").nodeValue;
                     var eDate = new Date(vDate);
@@ -177,21 +181,18 @@ function myProcess(i, zb, x) {
                         dd3: j
                     };
                     temObj3.push(dd);
+
+                    var diffDate = eDate - new Date(startDate);
+                    diffDate = diffDate / 1000;
+                    var dd = {
+                        dd1: diffDate,
+                        dd2: i,
+                        dd3: j
+                    };
+                    temObj4.push(dd);
                 }
-                if (y[j - 1].attributes.getNamedItem("by").nodeValue != "info" && y[j - 1].hasAttribute("repId") == false) {
-                    /*console.log(y[j].attributes);*/
-                    var vDate = y[j].attributes.getNamedItem("time").nodeValue;
-                    var eDate = new Date(vDate);
-                    var oDate = y[j - 1].attributes.getNamedItem("time").nodeValue;
-                    var sDate = new Date(oDate);
-                    var diffDate = eDate - sDate;
-                    diffDate = diffDate / 1000;
-                    var dd = {
-                        dd1: diffDate,
-                        dd2: i,
-                        dd3: j
-                    };
-                    temObj3.push(dd);
+                else {
+                    startDate = y[j].attributes.getNamedItem("time").nodeValue;
                 }
             }
         }
@@ -236,6 +237,8 @@ function myProcess(i, zb, x) {
     if (agentResponse != 0) {
         agentResponse = agentResponse / temObj3.length;
     }
+    var responseTimesFirst = temObj4.map(function(x) { return x.dd1.toString(); }).join(",");
+    var responseTimesLast = temObj3.map(function(x) { return x.dd1.toString(); }).join(",");
     temObj3 = [];
     var responses = {
         responseTime: agentResponse,
@@ -506,7 +509,8 @@ function myProcess(i, zb, x) {
     /*add data to table*/
     var t = $('#example').DataTable();
     t.row.add([
-                      null, null, d1, d2, d3, d25, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16, d17, d18, d19, d20, d21, d22, d23, d24, d4, d26
+                      null, null, d1, d2, d3, responseTimesFirst, responseTimesLast,
+                      d25, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16, d17, d18, d19, d20, d21, d22, d23, d24, d4, d26
                       ]);
 }
 
@@ -682,6 +686,9 @@ function myProcess2(i, zb, x) {
         /*chat transcript*/
         var y = x[i].getElementsByTagName("line");
         d16 = "";
+
+        var temObj4 = []
+        if(y.length != 0) { var startDate = y[0].attributes.getNamedItem("time").nodeValue; }
         for (j = 0; j < y.length; j++) {
             /*code for calculating response time*/
             if (j != 0) {
@@ -700,11 +707,12 @@ function myProcess2(i, zb, x) {
                             dd3: j
                         };
                         temObj.push(dd);
+                        startDate = y[j].attributes.getNamedItem("time").nodeValue;
                     }
                 }
                 /* agent response time*/
                 if (y[j].attributes.getNamedItem("by").nodeValue != "info" && y[j].hasAttribute("repId") == true) {
-                    if (y[j - 1].attributes.getNamedItem("by").nodeValue == "info") {
+                    if (y[j - 1].attributes.getNamedItem("by").nodeValue == "info" || y[j - 1].hasAttribute("repId") == false) {
                         /*console.log(y[j].attributes);*/
                         var vDate = y[j].attributes.getNamedItem("time").nodeValue;
                         var eDate = new Date(vDate);
@@ -718,21 +726,18 @@ function myProcess2(i, zb, x) {
                             dd3: j
                         };
                         temObj3.push(dd);
+
+                        var diffDate = eDate - new Date(startDate);
+                        diffDate = diffDate / 1000;
+                        var dd = {
+                            dd1: diffDate,
+                            dd2: i,
+                            dd3: j
+                        };
+                        temObj4.push(dd);
                     }
-                    if (y[j - 1].attributes.getNamedItem("by").nodeValue != "info" && y[j - 1].hasAttribute("repId") == false) {
-                        /*console.log(y[j].attributes);*/
-                        var vDate = y[j].attributes.getNamedItem("time").nodeValue;
-                        var eDate = new Date(vDate);
-                        var oDate = y[j - 1].attributes.getNamedItem("time").nodeValue;
-                        var sDate = new Date(oDate);
-                        var diffDate = eDate - sDate;
-                        diffDate = diffDate / 1000;
-                        var dd = {
-                            dd1: diffDate,
-                            dd2: i,
-                            dd3: j
-                        };
-                        temObj3.push(dd);
+                    else {
+                        startDate = y[j].attributes.getNamedItem("time").nodeValue;
                     }
                 }
             }
@@ -777,6 +782,8 @@ function myProcess2(i, zb, x) {
         if (agentResponse != 0) {
             agentResponse = agentResponse / temObj3.length;
         }
+        var responseTimesFirst = temObj4.map(function(x) { return x.dd1; }).join(",");
+        var responseTimesLast = temObj3.map(function(x) { return x.dd1; }).join(",");
         temObj3 = [];
         var responses = {
             responseTime: agentResponse,
@@ -1047,7 +1054,8 @@ function myProcess2(i, zb, x) {
         /*add data to table*/
         var t = $('#example').DataTable();
         t.row.add([
-                      null, null, d1, d2, d3, d25, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16, d17, d18, d19, d20, d21, d22, d23, d24, d4, d26
+                      null, null, d1, d2, d3, responseTimesFirst, responseTimesLast,
+                      d25, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16, d17, d18, d19, d20, d21, d22, d23, d24, d4, d26
                       ]);
     }
 }

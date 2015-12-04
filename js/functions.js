@@ -166,11 +166,11 @@ function format(d) {
         '<td><b>Opperator Survey:</b></td>' +
         '</tr>' +
         '<tr>' +
-        '<td>' + d[17] + '</td>' +
-        '<td>' + d[18] + '</td>' +
         '<td>' + d[19] + '</td>' +
         '<td>' + d[20] + '</td>' +
-        '<td>' + d[24] + '</td>' +
+        '<td>' + d[21] + '</td>' +
+        '<td>' + d[22] + '</td>' +
+        '<td>' + d[26] + '</td>' +
         '</tr>' +
         '</table>' +
         '<br />' +
@@ -180,47 +180,47 @@ function format(d) {
         '</tr>' +
         '<tr>' +
         '<td>Browser:</td>' +
-        '<td>' + d[7] + '</td>' +
+        '<td>' + d[9] + '</td>' +
         '</tr>' +
         '<tr>' +
         '<td>Host IP:</td>' +
-        '<td>' + d[8] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Country:</td>' +
         '<td>' + d[10] + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>City:</td>' +
-        '<td>' + d[11] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Organization:</td>' +
+        '<td>Country:</td>' +
         '<td>' + d[12] + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>World Region:</td>' +
+        '<td>City:</td>' +
         '<td>' + d[13] + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>Postal Code:</td>' +
+        '<td>Organization:</td>' +
         '<td>' + d[14] + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>Time Zone:</td>' +
+        '<td>World Region:</td>' +
         '<td>' + d[15] + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>ISP:</td>' +
+        '<td>Postal Code:</td>' +
         '<td>' + d[16] + '</td>' +
         '</tr>' +
         '<tr>' +
+        '<td>Time Zone:</td>' +
+        '<td>' + d[17] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>ISP:</td>' +
+        '<td>' + d[18] + '</td>' +
+        '</tr>' +
+        '<tr>' +
         '<td>Chat Referer:</td>' +
-        '<td>' + d[26] + '</td>' +
+        '<td>' + d[28] + '</td>' +
         '</tr>' +
         '<tr>' +
         '<td>Disconnected By:</td>' +
-        '<td>' + d[27] + '</td>' +
+        '<td>' + d[29] + '</td>' +
         '</tr>' +
         '</table>';
 }
