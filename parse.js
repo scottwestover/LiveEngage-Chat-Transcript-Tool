@@ -1,5 +1,18 @@
 /*parse the transcript and update the data table*/
 function myProcess(i, zb, x) {
+    interactive = false;
+    /*see if the chat was interactive or not*/
+    var chat = x[i].getElementsByTagName("Chat")[0];
+    if (chat != undefined) {
+        var y = x[i].getElementsByTagName("line");
+        for (j = 0; j < y.length; j++) {
+            /* visitor response time*/
+            if (y[j].attributes.getNamedItem("by").nodeValue != "info" && y[j].hasAttribute("repId") == false) {
+                interactive = true;
+                break;
+            }
+        }
+    }
     divText += "<tr><td>";
     chatObj = x[i].getElementsByTagName("Chat")[0];
     if (chatObj == undefined) {
@@ -515,7 +528,8 @@ function myProcess(i, zb, x) {
     /*add data to table*/
     var t = $('#example').DataTable();
     t.row.add([
-                      null, null, d1, d2, d3, responseTimesFirst, repResponse ? failedFirst : "no response", responseTimesLast, repResponse ? failedLast : "no response",
+                      null, null, interactive ? 'Y' : '', d1, d2, d3,
+                      responseTimesFirst, repResponse ? failedFirst : "no response", responseTimesLast, repResponse ? failedLast : "no response",
                       d25, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16, d17, d18, d19, d20, d21, d22, d23, d24, d4, d26
                       ]);
 }
@@ -1066,7 +1080,8 @@ function myProcess2(i, zb, x) {
         /*add data to table*/
         var t = $('#example').DataTable();
         t.row.add([
-                      null, null, d1, d2, d3, responseTimesFirst, repResponse ? failedFirst : "no response", responseTimesLast, repResponse ? failedLast : "no response",
+                      null, null, 'Y', d1, d2, d3,
+                      responseTimesFirst, repResponse ? failedFirst : "no response", responseTimesLast, repResponse ? failedLast : "no response",
                       d25, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16, d17, d18, d19, d20, d21, d22, d23, d24, d4, d26
                       ]);
     }
