@@ -29,7 +29,7 @@ Here is how to format the cells:
 5. Click Replace All
 
 ##Updates
-Master - Added the following columns to the table: Agent Response Time (since first message in most recent user block), Failed SLAs by representative (for the previous), Agent Response Time (since last message in most recent user block), Failed SLAs by representative (for the previous), Interactive (Y or blank). Various typing errors have been fixed. Added a contribution page that can be accessed from the 'how to use section'.
+Master - Fixed issue where survey search fields where not searching the correct surveys.
 
 * Version 1.0 
  * Initial Release
@@ -79,6 +79,10 @@ Master - Added the following columns to the table: Agent Response Time (since fi
  * Added in data for disconnect reason to data table
  * Added a Disconnected By Report 
  * Added in an option to exlclude non-interactive chats from the transcript, these chats will not show in the table, or in the reports
+* Version 2.1.3
+ * Added the following columns to the table: Agent Response Time (since first message in most recent user block), Failed SLAs by representative (for the previous), Agent Response Time (since last message in most recent user block), Failed SLAs by representative (for the previous), Interactive (Y or blank)
+ * Various typing errors have been fixed
+ * Added a contribution page that can be accessed from the 'how to use section'.
 
 ##Contribution
 I just wanted to say thanks to following users for helping contribute to this tool.
