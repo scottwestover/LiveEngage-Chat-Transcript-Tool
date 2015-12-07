@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Chat XML Widget Instructions</title>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.css">
+    <!-- jQuery -->
+    <script type="text/javascript" charset="utf8" src="../js/jquery-1.10.2.min.js"></script>
+    <!-- DataTables -->
+    <script type="text/javascript" charset="utf8" src="../js/jquery.dataTables.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href="../css/dashboard.css" rel="stylesheet">
+    <!-- Widget CSS -->
+    <link rel="stylesheet" href="../css/widget.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">XML Chat Transcript Widget Instructions</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li><a href="../instructions.html">Overview <span class="sr-only">(current)</span></a></li>
+                    <li><a href="export.html">Export Chat Transcripts</a></li>
+                    <li class="active"><a href="#">Order Total Variable</a></li>
+                    <li><a href="excel.html">Format Transcripts & Surveys In Excel</a></li>
+                    <li><a href="feedback.html">Feedback & Suggestions</a></li>
+                </ul>
+                <ul class="nav nav-sidebar">
+                    <li><a href="../index.html">Back To XML Tool <span class="sr-only">(current)</span></a></li>
+                </ul>
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <h1 class="page-header">How To Find Your Order Total Variable</h1>
+
+                <div>
+                    <ol>
+                        <li>Open your chat transcript XML file in a program that will format the XML, for example Chrome.
+                            <br />
+                            <br /><img src="../images/order1.png" />
+                        </li>
+                        <br />
+                        <li>Scroll to the very bottom of the file. At the bottom you will see a section called 'Variables'.
+                            <br />
+                            <br /><img src="../images/order2.png" /></li>
+                        <br />
+                        <li>Look for a variable where the title is your question that is on the agent survey. Your Order ID variable will be the id of that variable.
+                            <br />
+                            <br /><img src="../images/order3.png" /></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
