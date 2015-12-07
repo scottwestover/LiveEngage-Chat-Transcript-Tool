@@ -108,7 +108,7 @@
                                 <br>
                                 <br>
                                 <label>
-                                    <input type="checkbox" value="" id="interactiveCheck"> Exlclude Non-Interactive Chats
+                                    <input type="checkbox" value="" id="interactiveCheck"> Exclude Non-Interactive Chats
                                 </label>&#160;
                             </div>
                             <br> Once you have selected your reports, choose your XML file below.
@@ -233,9 +233,14 @@
                             <tr>
                                 <th></th>
                                 <th></th>
+                                <th>Interactive</th>
                                 <th>Chat Start Time</th>
                                 <th>Chat End Time</th>
                                 <th>Duration</th>
+                                <th>Agent Response Times (Since First)</th>
+                                <th>Failed SLAs (Since First)</th>
+                                <th>Agent Response Times (Since Last)</th>
+                                <th>Failed SLAs (Since Last)</th>
                                 <th>Skill Group</th>
                                 <th>Operator</th>
                                 <th>Browser</th>
@@ -257,12 +262,17 @@
                                 <th>Offline</th>
                                 <th>Operator Survey</th>
                                 <th>Operator</th>
-                                <th>Chat Referer</th>
+                                <th>Chat Referrer</th>
                                 <th>Disconnected By</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>

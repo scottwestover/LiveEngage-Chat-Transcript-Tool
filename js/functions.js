@@ -13,64 +13,64 @@ function printME() {
 function changeModal(d) {
     var d = d;
     document.getElementById("otherTables").innerHTML = "";
-    document.getElementById("st").innerHTML = "<b>Chat Start Time: </b>" + d[2];
-    document.getElementById("et").innerHTML = "<b>Chat End Time: </b>" + d[3];
-    document.getElementById("dur").innerHTML = "<b>Chat Duration: </b>" + d[4];
-    document.getElementById("sk").innerHTML = "<b>Skill Group: </b>" + d[5];
-    document.getElementById("ag").innerHTML = "<b>Operator: </b>" + d[6];
-    document.getElementById("sess").innerHTML = "<b>Session ID: </b>" + d[9];
+    document.getElementById("st").innerHTML = "<b>Chat Start Time: </b>" + d[3];
+    document.getElementById("et").innerHTML = "<b>Chat End Time: </b>" + d[4];
+    document.getElementById("dur").innerHTML = "<b>Chat Duration: </b>" + d[5];
+    document.getElementById("sk").innerHTML = "<b>Skill Group: </b>" + d[10];
+    document.getElementById("ag").innerHTML = "<b>Operator: </b>" + d[11];
+    document.getElementById("sess").innerHTML = "<b>Session ID: </b>" + d[14];
     /*chat transcript*/
-    if (d[17] !== "") {
+    if (d[18] !== "") {
         document.getElementById("otherTables").innerHTML += '<table border=1 class="tableModal">' +
             '<tr>' +
             '<td><div style="text-align: center"><b>Transcript</b></div></td>' +
             '</tr>' +
             '<tr>' +
-            '<td><div>' + d[17] + '</div></td>' +
+            '<td><div>' + d[22] + '</div></td>' +
             '</tr>' +
             '</table><br />';
     }
     /*pre chat survey*/
-    if (d[18] !== "") {
+    if (d[19] !== "") {
         document.getElementById("otherTables").innerHTML += '<table border=1 class="tableModal">' +
             '<tr>' +
             '<td><div style="text-align: center"><b>Pre Chat Survey</b></div></td>' +
             '</tr>' +
             '<tr>' +
-            '<td><div>' + d[18] + '</div></td>' +
+            '<td><div>' + d[23] + '</div></td>' +
             '</tr>' +
             '</table><br />';
     }
     /*post chat survey*/
-    if (d[19] !== "") {
+    if (d[20] !== "") {
         document.getElementById("otherTables").innerHTML += '<table border=1 class="tableModal">' +
             '<tr>' +
             '<td><div style="text-align: center"><b>Post Chat Survey</b></div></td>' +
-            '</tr>' +
-            '<tr>' +
-            '<td><div>' + d[19] + '</div></td>' +
-            '</tr>' +
-            '</table><br />';
-    }
-    /*Operator survey*/
-    if (d[24] !== "") {
-        document.getElementById("otherTables").innerHTML += '<table border=1 class="tableModal">' +
-            '<tr>' +
-            '<td><div style="text-align: center"><b>Operator Survey</b></div></td>' +
             '</tr>' +
             '<tr>' +
             '<td><div>' + d[24] + '</div></td>' +
             '</tr>' +
             '</table><br />';
     }
+    /*Operator survey*/
+    if (d[29] !== "") {
+        document.getElementById("otherTables").innerHTML += '<table border=1 class="tableModal">' +
+            '<tr>' +
+            '<td><div style="text-align: center"><b>Operator Survey</b></div></td>' +
+            '</tr>' +
+            '<tr>' +
+            '<td><div>' + d[29] + '</div></td>' +
+            '</tr>' +
+            '</table><br />';
+    }
     /*Offline survey*/
-    if (d[20] !== "") {
+    if (d[25] !== "") {
         document.getElementById("otherTables").innerHTML += '<table border=1 class="tableModal">' +
             '<tr>' +
             '<td><div style="text-align: center"><b>Offline Survey</b></div></td>' +
             '</tr>' +
             '<tr>' +
-            '<td><div>' + d[20] + '</div></td>' +
+            '<td><div>' + d[25] + '</div></td>' +
             '</tr>' +
             '</table><br />';
     }
@@ -81,43 +81,43 @@ function changeModal(d) {
         '</tr>' +
         '<tr>' +
         '<td>Browser:</td>' +
-        '<td>' + d[7] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Host IP:</td>' +
-        '<td>' + d[8] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Country:</td>' +
-        '<td>' + d[10] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>City:</td>' +
-        '<td>' + d[11] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Organization:</td>' +
         '<td>' + d[12] + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>World Region:</td>' +
+        '<td>Host IP:</td>' +
         '<td>' + d[13] + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>Postal Code:</td>' +
-        '<td>' + d[14] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Time Zone:</td>' +
+        '<td>Country:</td>' +
         '<td>' + d[15] + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>ISP:</td>' +
+        '<td>City:</td>' +
         '<td>' + d[16] + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>Chat Referer:</td>' +
-        '<td>' + d[26] + '</td>' +
+        '<td>Organization:</td>' +
+        '<td>' + d[17] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>World Region:</td>' +
+        '<td>' + d[18] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Postal Code:</td>' +
+        '<td>' + d[19] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Time Zone:</td>' +
+        '<td>' + d[20] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>ISP:</td>' +
+        '<td>' + d[21] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Chat Referrer:</td>' +
+        '<td>' + d[31] + '</td>' +
         '</tr>' +
         '</table>';
 }
@@ -126,7 +126,7 @@ function changeModal(d) {
 function getOrderID() {
     myOrderID = document.getElementById("orderIDVar").value;
 }
-/*filters the colums based on the selection */
+/*filters the columns based on the selection */
 function filterColumn(i) {
     $('#example').DataTable().column(i).search(
         $('#col' + i + '_filter').val()
@@ -163,14 +163,14 @@ function format(d) {
         '<td><b>Prechat Survey:</b></td>' +
         '<td><b>Postchat Survey:</b></td>' +
         '<td><b>Offline Survey:</b></td>' +
-        '<td><b>Opperator Survey:</b></td>' +
+        '<td><b>Operator Survey:</b></td>' +
         '</tr>' +
         '<tr>' +
-        '<td>' + d[17] + '</td>' +
-        '<td>' + d[18] + '</td>' +
-        '<td>' + d[19] + '</td>' +
-        '<td>' + d[20] + '</td>' +
+        '<td>' + d[22] + '</td>' +
+        '<td>' + d[23] + '</td>' +
         '<td>' + d[24] + '</td>' +
+        '<td>' + d[25] + '</td>' +
+        '<td>' + d[29] + '</td>' +
         '</tr>' +
         '</table>' +
         '<br />' +
@@ -180,47 +180,47 @@ function format(d) {
         '</tr>' +
         '<tr>' +
         '<td>Browser:</td>' +
-        '<td>' + d[7] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Host IP:</td>' +
-        '<td>' + d[8] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Country:</td>' +
-        '<td>' + d[10] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>City:</td>' +
-        '<td>' + d[11] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Organization:</td>' +
         '<td>' + d[12] + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>World Region:</td>' +
+        '<td>Host IP:</td>' +
         '<td>' + d[13] + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>Postal Code:</td>' +
-        '<td>' + d[14] + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Time Zone:</td>' +
+        '<td>Country:</td>' +
         '<td>' + d[15] + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>ISP:</td>' +
+        '<td>City:</td>' +
         '<td>' + d[16] + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>Chat Referer:</td>' +
-        '<td>' + d[26] + '</td>' +
+        '<td>Organization:</td>' +
+        '<td>' + d[17] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>World Region:</td>' +
+        '<td>' + d[18] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Postal Code:</td>' +
+        '<td>' + d[19] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Time Zone:</td>' +
+        '<td>' + d[20] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>ISP:</td>' +
+        '<td>' + d[21] + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Chat Referrer:</td>' +
+        '<td>' + d[31] + '</td>' +
         '</tr>' +
         '<tr>' +
         '<td>Disconnected By:</td>' +
-        '<td>' + d[27] + '</td>' +
+        '<td>' + d[32] + '</td>' +
         '</tr>' +
         '</table>';
 }
