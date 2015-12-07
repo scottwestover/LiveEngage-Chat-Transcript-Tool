@@ -29,7 +29,7 @@ Here is how to format the cells:
 5. Click Replace All
 
 ##Updates
-Master - Added the following columns to the table: Agent Response Time (since first message in most recent user block), Failed SLAs by representative (for the previous), Agent Response Time (since last message in most recent user block), Failed SLAs by representative (for the previous), Interactive (Y or blank). Various typing errors have been fixed.
+Master - Added the following columns to the table: Agent Response Time (since first message in most recent user block), Failed SLAs by representative (for the previous), Agent Response Time (since last message in most recent user block), Failed SLAs by representative (for the previous), Interactive (Y or blank). Various typing errors have been fixed. Added a contribution page that can be accessed from the 'how to use section'.
 
 * Version 1.0 
  * Initial Release
