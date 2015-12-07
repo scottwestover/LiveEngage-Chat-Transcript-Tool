@@ -29,7 +29,7 @@ Here is how to format the cells:
 5. Click Replace All
 
 ##Updates
-Master - Fixed issue where there was not time displayed for offline surveys. Added in data for disconnect reason to data table. Added a Disconnected By Report. Added in an option to exlclude non-interactive chats from the transcript. These chats will not show in the table, or in the reports.
+Master - Added the following columns to the table: Agent Response Time (since first message in most recent user block), Failed SLAs by representative (for the previous), Agent Response Time (since last message in most recent user block), Failed SLAs by representative (for the previous), Interactive (Y or blank). Various typing errors have been fixed.
 
 * Version 1.0 
  * Initial Release
@@ -74,6 +74,22 @@ Master - Fixed issue where there was not time displayed for offline surveys. Add
  * Fixed issue where pie chart was moving when you hover over it
 * Version 2.1.1
  * Updated instructions to include how to format the data in Excel when you export the table.
+* Version 2.1.2
+ * Fixed issue where there was not time displayed for offline surveys
+ * Added in data for disconnect reason to data table
+ * Added a Disconnected By Report 
+ * Added in an option to exlclude non-interactive chats from the transcript, these chats will not show in the table, or in the reports
+
+##Contribution
+I just wanted to say thanks to following users for helping contribute to this tool.
+
+* [shockkolate](https://github.com/shockkolate)
+ * shockkolate contributed the following:
+  * Agent Response Time (since first message in most recent user block)
+  * Failed SLAs by representative (for the above)
+  * Agent Response Time (since last message in most recent user block)
+  * Failed SLAs by representative (for the above)
+  * Interactive (Y or blank)
 
 ##Disclaimer
 This tool is created to help you parse and read the transcripts that are provided by LivePerson. This is not a product that is supported by LivePerson.  This type of tool can be used as an example for your developers to create your own custom reporting. 
