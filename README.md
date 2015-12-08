@@ -29,7 +29,7 @@ Here is how to format the cells:
 5. Click Replace All
 
 ##Updates
-Master - Fixed issue where survey search fields where not searching the correct surveys.
+Master - Added tooltip for failed SLAs.
 
 * Version 1.0 
  * Initial Release
@@ -82,7 +82,9 @@ Master - Fixed issue where survey search fields where not searching the correct 
 * Version 2.1.3
  * Added the following columns to the table: Agent Response Time (since first message in most recent user block), Failed SLAs by representative (for the previous), Agent Response Time (since last message in most recent user block), Failed SLAs by representative (for the previous), Interactive (Y or blank)
  * Various typing errors have been fixed
- * Added a contribution page that can be accessed from the 'how to use section'.
+ * Added a contribution page that can be accessed from the 'how to use section'
+* Version 2.1.4
+ * Fixed issue where survey search fields where not searching the correct surveys
 
 ##Contribution
 I just wanted to say thanks to following users for helping contribute to this tool.
