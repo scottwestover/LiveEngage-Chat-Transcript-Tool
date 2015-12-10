@@ -159,7 +159,9 @@ function myProcess(i, zb, x) {
     var failedFirst = 0;
     var failedLast = 0;
     var temObj4 = []
-    if(y.length != 0) { var startDate = y[0].attributes.getNamedItem("time").nodeValue; }
+    if (y.length != 0) {
+        var startDate = y[0].attributes.getNamedItem("time").nodeValue;
+    }
     for (j = 0; j < y.length; j++) {
         /*code for calculating response time*/
         if (j != 0) {
@@ -192,7 +194,9 @@ function myProcess(i, zb, x) {
                     var sDate = new Date(oDate);
                     var diffDate = eDate - sDate;
                     diffDate = diffDate / 1000;
-                    if(diffDate > 30) { ++failedLast; }
+                    if (diffDate > 30) {
+                        ++failedLast;
+                    }
                     var dd = {
                         dd1: diffDate,
                         dd2: i,
@@ -202,15 +206,16 @@ function myProcess(i, zb, x) {
 
                     var diffDate = eDate - new Date(startDate);
                     diffDate = diffDate / 1000;
-                    if(diffDate > 30) { ++failedFirst; }
+                    if (diffDate > 30) {
+                        ++failedFirst;
+                    }
                     var dd = {
                         dd1: diffDate,
                         dd2: i,
                         dd3: j
                     };
                     temObj4.push(dd);
-                }
-                else {
+                } else {
                     startDate = y[j].attributes.getNamedItem("time").nodeValue;
                 }
             }
@@ -256,8 +261,12 @@ function myProcess(i, zb, x) {
     if (agentResponse != 0) {
         agentResponse = agentResponse / temObj3.length;
     }
-    var responseTimesFirst = temObj4.map(function(x) { return x.dd1.toString(); }).join(",");
-    var responseTimesLast = temObj3.map(function(x) { return x.dd1.toString(); }).join(",");
+    var responseTimesFirst = temObj4.map(function (x) {
+        return x.dd1.toString();
+    }).join(",");
+    var responseTimesLast = temObj3.map(function (x) {
+        return x.dd1.toString();
+    }).join(",");
     temObj3 = [];
     var responses = {
         responseTime: agentResponse,
@@ -711,7 +720,9 @@ function myProcess2(i, zb, x) {
         var failedFirst = 0;
         var failedLast = 0;
         var temObj4 = []
-        if(y.length != 0) { var startDate = y[0].attributes.getNamedItem("time").nodeValue; }
+        if (y.length != 0) {
+            var startDate = y[0].attributes.getNamedItem("time").nodeValue;
+        }
         for (j = 0; j < y.length; j++) {
             /*code for calculating response time*/
             if (j != 0) {
@@ -744,7 +755,9 @@ function myProcess2(i, zb, x) {
                         var sDate = new Date(oDate);
                         var diffDate = eDate - sDate;
                         diffDate = diffDate / 1000;
-                        if(diffDate > 30) { ++failedLast; }
+                        if (diffDate > 30) {
+                            ++failedLast;
+                        }
                         var dd = {
                             dd1: diffDate,
                             dd2: i,
@@ -754,15 +767,16 @@ function myProcess2(i, zb, x) {
 
                         var diffDate = eDate - new Date(startDate);
                         diffDate = diffDate / 1000;
-                        if(diffDate > 30) { ++failedFirst; }
+                        if (diffDate > 30) {
+                            ++failedFirst;
+                        }
                         var dd = {
                             dd1: diffDate,
                             dd2: i,
                             dd3: j
                         };
                         temObj4.push(dd);
-                    }
-                    else {
+                    } else {
                         startDate = y[j].attributes.getNamedItem("time").nodeValue;
                     }
                 }
@@ -808,8 +822,12 @@ function myProcess2(i, zb, x) {
         if (agentResponse != 0) {
             agentResponse = agentResponse / temObj3.length;
         }
-        var responseTimesFirst = temObj4.map(function(x) { return x.dd1; }).join(",");
-        var responseTimesLast = temObj3.map(function(x) { return x.dd1; }).join(",");
+        var responseTimesFirst = temObj4.map(function (x) {
+            return x.dd1;
+        }).join(",");
+        var responseTimesLast = temObj3.map(function (x) {
+            return x.dd1;
+        }).join(",");
         temObj3 = [];
         var responses = {
             responseTime: agentResponse,
