@@ -29,7 +29,7 @@ Here is how to format the cells:
 5. Click Replace All
 
 ##Updates
-Master - Added tooltip for failed SLAs.
+Master - Added tooltip for failed SLAs if you hover over the column header.
 
 * Version 1.0 
  * Initial Release
