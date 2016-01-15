@@ -369,8 +369,10 @@ function myProcess(i, zb, x) {
                 }
                 /*code for each agent*/
                 var agentCsatExists = false;
+                var noAgent = false;
                 for (var w = 0; w < csatAgentList.length; w++) {
                     var agentCsat = csatAgentList[w];
+ if(chatObj[k].parentNode.parentNode.getElementsByTagName("Rep")[0] != undefined){
                     if (agentCsat.name == chatObj[k].parentNode.parentNode.getElementsByTagName("Rep")[0].attributes.getNamedItem("repName").nodeValue) {
                         for (var ww = 0; ww < agentCsat.questions.length; ww++) {
                             var agentCQuestion = agentCsat.questions[ww];
@@ -389,12 +391,43 @@ function myProcess(i, zb, x) {
                             agentCsat.questions.push(question);
                         }
                         break;
+                    } 
+                    }
+                    else {
+                        noAgent = true;
+                        if (agentCsat.name == "No Agent") {
+                        for (var ww = 0; ww < agentCsat.questions.length; ww++) {
+                            var agentCQuestion = agentCsat.questions[ww];
+                            if (agentCQuestion.name == surveyQ) {
+                                agentCsatExists = true;
+                                agentCsat.questions[ww].total += 1;
+                                break;
+                            }
+                        }
+                        if (agentCsatExists == false) {
+                            agentCsatExists = true;
+                            var question = {
+                                name: surveyQ,
+                                total: 1
+                            }
+                            agentCsat.questions.push(question);
+                        }
+                        break;
+                    }
                     }
                 }
                 if (agentCsatExists == false) {
+                    if(noAgent == false) {
                     var agent = {
                         name: chatObj[k].parentNode.parentNode.getElementsByTagName("Rep")[0].attributes.getNamedItem("repName").nodeValue,
                         questions: []
+                    }
+                    }
+                    else {
+                        var agent = {
+                        name: "No Agent",
+                        questions: []
+                    }
                     }
                     var question = {
                         name: surveyQ,

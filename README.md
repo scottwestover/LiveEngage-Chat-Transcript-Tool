@@ -29,7 +29,7 @@ Here is how to format the cells:
 5. Click Replace All
 
 ##Updates
-Master - Added tooltip for failed SLAs if you hover over the column header.
+Master - Fixed an issue with the agent survey that could occur when a post chat survey did not have an agent tied to it.
 
 * Version 1.0 
  * Initial Release
@@ -85,6 +85,8 @@ Master - Added tooltip for failed SLAs if you hover over the column header.
  * Added a contribution page that can be accessed from the 'how to use section'
 * Version 2.1.4
  * Fixed issue where survey search fields where not searching the correct surveys
+* Version 2.1.5
+ * Added tooltip for failed SLAs if you hover over the column header
 
 ##Contribution
 I just wanted to say thanks to following users for helping contribute to this tool.
