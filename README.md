@@ -29,7 +29,7 @@ Here is how to format the cells:
 5. Click Replace All
 
 ##Updates
-Master - Fixed an issue with the agent survey that could occur when a post chat survey did not have an agent tied to it.
+Master - Fixed an issue when the chat line text is blank, the parser would not parse it.
 
 * Version 1.0 
  * Initial Release
@@ -87,6 +87,8 @@ Master - Fixed an issue with the agent survey that could occur when a post chat 
  * Fixed issue where survey search fields where not searching the correct surveys
 * Version 2.1.5
  * Added tooltip for failed SLAs if you hover over the column header
+* Version 2.1.6
+ * Fixed an issue with the agent survey that could occur when a post chat survey did not have an agent tied to it
 
 ##Contribution
 I just wanted to say thanks to following users for helping contribute to this tool.

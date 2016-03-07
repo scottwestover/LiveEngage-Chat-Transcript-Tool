@@ -227,7 +227,12 @@ function myProcess(i, zb, x) {
             if (txt == "You") {
                 txt = "Visitor";
             }
+            if(y[j].getElementsByTagName("Text")[0].childNodes[0] != undefined){
             title = y[j].getElementsByTagName("Text")[0].childNodes[0].nodeValue;
+            }
+            else {
+            title = "";
+            }
             tempTime = y[j].getAttribute("time");
             d16 += splitDate2(tempTime) + "<br />";
             if (y[j].attributes[0].nodeValue == "info") {
