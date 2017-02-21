@@ -1,7 +1,7 @@
 # LiveEngage-Chat-Transcript-Tool
 XML Parser tool that can be used to read in the chat transcripts from LiveEngage. 
 
-You can view a live example of the tool here: http://scottwestover.github.io/
+You can view a live example of the tool here: scottwestover/LiveEngage-XML-Transcript-Parser
 
 ##Instructions For Using The XML Chat Transcript Widget
 
